@@ -13,7 +13,11 @@ function getFirestoreClient(): Firestore {
   const clientEmail = process.env.GCP_CLIENT_EMAIL;
   const privateKey = process.env.GCP_PRIVATE_KEY?.replace(/\\n/g, "\n");
 
-  if (!privateKey && !process.env.K_SERVICE && process.env.NODE_ENV === "production") {
+  const isBuildPhase =
+    process.env.NEXT_PHASE === "phase-production-build" ||
+    process.env.BUILDING_CONTAINER === "true";
+
+  if (!privateKey && !process.env.K_SERVICE && !isBuildPhase && process.env.NODE_ENV === "production") {
     throw new Error(
       "Missing GCP credentials in environment variables (GCP_PROJECT_ID, GCP_CLIENT_EMAIL, GCP_PRIVATE_KEY)."
     );

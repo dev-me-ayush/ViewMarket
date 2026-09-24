@@ -16,6 +16,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+ENV BUILDING_CONTAINER=true
 ENV NEXT_PUBLIC_APP_URL=https://viewmarket.in
 RUN pnpm run build
 
