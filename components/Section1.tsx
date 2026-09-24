@@ -56,7 +56,7 @@ export default function Section1() {
   ];
 
   return (
-    <section className="bg2 py-20 md:py-32 flex flex-col items-center gap-24 md:gap-32 px-4 md:px-6">
+    <section className="bg-transparent py-20 md:py-32 flex flex-col items-center gap-24 md:gap-32 px-4 md:px-6">
       <Card
         reverse={card1.reverse}
         title={card1.title}
@@ -69,14 +69,21 @@ export default function Section1() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 max-w-[1136px] w-full">
         {features.map((feat) => (
           <div key={feat.title} className="flex gap-6 items-start">
-            <div className={`icon ${feat.iconClass} shrink-0`}>
-              <Image src={feat.icon} alt="" className="size-6" />
+            <div className={`icon ${feat.iconClass} shrink-0`} aria-hidden="true">
+              <Image
+                src={feat.icon}
+                alt=""
+                width={24}
+                height={24}
+                unoptimized
+                className="size-6 brightness-0 invert"
+              />
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="font-mackinac text-xl font-medium tracking-tight text-[#281950]">
+              <h3 className="font-mackinac text-xl font-medium tracking-tight text-white">
                 {feat.title}
               </h3>
-              <p className="text-base text-[#281950]/75 leading-relaxed">
+              <p className="text-base text-zinc-400 leading-relaxed">
                 {feat.desc}
               </p>
             </div>

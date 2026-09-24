@@ -1,0 +1,112 @@
+name: Deploy ViewMarket to Google Cloud Run
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+concurrency:
+  group: production-deployment
+  cancel-in-progress: false
+
+jobs:
+  test-and-verify:
+    name: Run Quality Gates & Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 12.3.4
+          run_install: false
+
+      - name: Get pnpm Store Directory
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+
+      - name: Setup pnpm Cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript Check
+        run: pnpm exec tsc --noEmit
+
+      - name: Run Test Suite
+        run: pnpm run test
+
+  deploy:
+    name: Build & Deploy to Google Cloud Run
+    needs: test-and-verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Configure Docker Authentication for Artifact Registry
+        run: |
+          gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and Push Container Image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          tags: |
+            asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/viewmarket-repo/web:${{ github.sha }}
+            asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/viewmarket-repo/web:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Deploy to Cloud Run (asia-south1)
+        run: |
+          gcloud run deploy viewmarket-web \
+            --image="asia-south1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/viewmarket-repo/web:${{ github.sha }}" \
+            --region="asia-south1" \
+            --platform="managed" \
+            --allow-unauthenticated \
+            --min-instances=1 \
+            --max-instances=10 \
+            --concurrency=80 \
+            --port=3000 \
+            --service-account="viewmarket-runner@${{ secrets.GCP_PROJECT_ID }}.iam.gserviceaccount.com" \
+            --set-secrets="BETTER_AUTH_SECRET=BETTER_AUTH_SECRET:latest,BETTER_AUTH_URL=BETTER_AUTH_URL:latest,NEXT_PUBLIC_APP_URL=NEXT_PUBLIC_APP_URL:latest,GOOGLE_CLIENT_ID=GOOGLE_CLIENT_ID:latest,GOOGLE_CLIENT_SECRET=GOOGLE_CLIENT_SECRET:latest,GITHUB_CLIENT_ID=GITHUB_CLIENT_ID:latest,GITHUB_CLIENT_SECRET=GITHUB_CLIENT_SECRET:latest,GCP_PROJECT_ID=GCP_PROJECT_ID:latest,GCP_CLIENT_EMAIL=GCP_CLIENT_EMAIL:latest,GCP_PRIVATE_KEY=GCP_PRIVATE_KEY:latest" \
+            --project="${{ secrets.GCP_PROJECT_ID }}" \
+            --quiet
+
+      - name: Output Service URL
+        run: |
+          SERVICE_URL=$(gcloud run services describe viewmarket-web --region=asia-south1 --project="${{ secrets.GCP_PROJECT_ID }}" --format="value(status.url)")
+          echo "Production Cloud Run URL: $SERVICE_URL"
+          echo "Custom Domain Target: https://viewmarket.in"

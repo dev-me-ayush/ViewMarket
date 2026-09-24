@@ -53,9 +53,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#191034] text-[#a39ac1] px-6 sm:px-10 py-16 sm:py-20 flex flex-col items-center">
+    <footer className="bg-[#09090b] text-zinc-400 border-t border-zinc-800 px-6 sm:px-10 py-16 sm:py-20 flex flex-col items-center">
       <div className="w-full max-w-[1136px] flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-16">
-        <a href="/" className="focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 rounded-lg">
+        <a href="/" className="focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 rounded-lg">
           <Image
             alt="ViewMarket Logo"
             src={logoInverted}
@@ -88,7 +88,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="w-full max-w-[1136px] mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-[#a39ac1]">
+      <div className="w-full max-w-[1136px] mt-16 pt-8 border-t border-zinc-800 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-400">
         <p>© {new Date().getFullYear()} ViewMarket Technologies. All rights reserved.</p>
         <p>
           Non-custodial trading workflow software &amp; computational analytics.

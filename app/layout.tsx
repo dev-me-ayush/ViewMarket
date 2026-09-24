@@ -40,8 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={cn(mackinac.variable, bricolage.variable, "font-sans", geist.variable)}>
-      <body className="antialiased min-h-screen text-[#281950] bg-[#f4f5fa] selection:bg-[#7c3aed] selection:text-white">
+    <html lang="en" className={cn(mackinac.variable, bricolage.variable, "font-sans", geist.variable, "dark")}>
+      <body className="antialiased min-h-screen text-zinc-100 bg-[#09090b] selection:bg-zinc-800 selection:text-white">
         <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>

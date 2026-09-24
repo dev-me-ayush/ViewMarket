@@ -25,8 +25,8 @@ export default function Tech() {
   ];
 
   return (
-    <section className="purple-bg py-20 md:py-28 px-4 md:px-6 my-16 md:my-24">
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 max-w-[1136px] mx-auto w-full">
+    <section className="bg-transparent px-4 md:px-6 my-16 md:my-24">
+      <div className="compliance-banner-bg flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 max-w-[1136px] mx-auto w-full p-8 sm:p-12 md:p-14">
         <div className="flex-1 max-w-xl space-y-6 text-left">
           <h2 className="font-mackinac text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-tight font-normal">
             Built On Modern High-Performance Stacks

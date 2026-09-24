@@ -4,7 +4,7 @@ import authIllustration from "@/assets/auth-illustration.png";
 export function AuthIllustration() {
   return (
     <section
-      className="hidden lg:block lg:w-1/2 relative bg-[#130f28] overflow-hidden min-h-screen"
+      className="hidden lg:block lg:w-1/2 relative bg-[#09090b] overflow-hidden min-h-screen"
       data-purpose="brand-illustration-panel"
     >
       <Image

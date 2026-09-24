@@ -26,30 +26,30 @@ export default function RefundPolicyPage() {
     >
       {/* SECTION 1 */}
       <section className="scroll-mt-24 space-y-3" id="sec-1">
-        <div className="text-[#6d28d9] font-bold text-xs tracking-wider uppercase font-mono">
+        <div className="text-zinc-400 font-bold text-xs tracking-wider uppercase font-mono">
           01. Compute Metering Policy
         </div>
-        <h2 className="font-mackinac text-2xl sm:text-3xl text-[#281950] tracking-tight leading-snug font-normal">
+        <h2 className="font-mackinac text-2xl sm:text-3xl text-white tracking-tight leading-snug font-normal">
           1. Cloud Compute Runtime &amp; Non-Refundable Services
         </h2>
-        <p className="text-base sm:text-lg text-[#281950]/80 leading-relaxed font-normal">
-          ViewMarket allocates isolated cloud compute instances (vCPU, RAM, sandboxed execution runtimes) to perform heavy combinatorial parameter sweeps and algorithmic optimization. Because these computing resources are provisioned in real time on cloud infrastructure, all fees charged for utilized compute runtime are <strong>strictly non-refundable</strong> once processing commences.
+        <p className="text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
+          ViewMarket allocates isolated cloud compute instances (vCPU, RAM, sandboxed execution runtimes) to perform heavy combinatorial parameter sweeps and algorithmic optimization. Because these computing resources are provisioned in real time on cloud infrastructure, all fees charged for utilized compute runtime are <strong className="text-white">strictly non-refundable</strong> once processing commences.
         </p>
       </section>
 
       {/* SECTION 2 */}
       <section className="scroll-mt-24 space-y-3" id="sec-2">
-        <div className="text-[#6d28d9] font-bold text-xs tracking-wider uppercase font-mono">
+        <div className="text-zinc-400 font-bold text-xs tracking-wider uppercase font-mono">
           02. Absolute Liability Exclusion
         </div>
-        <h2 className="font-mackinac text-2xl sm:text-3xl text-[#281950] tracking-tight leading-snug font-normal">
+        <h2 className="font-mackinac text-2xl sm:text-3xl text-white tracking-tight leading-snug font-normal">
           2. Complete Non-Reimbursement of Market &amp; Trading Losses
         </h2>
-        <div className="p-5 bg-rose-50/70 rounded-2xl border border-rose-200/80 shadow-sm space-y-2">
-          <p className="text-xs uppercase tracking-wider text-rose-950 font-bold leading-relaxed">
+        <div className="p-5 bg-rose-950/20 rounded-2xl border border-rose-900/40 shadow-sm space-y-2">
+          <p className="text-xs uppercase tracking-wider text-rose-300 font-bold leading-relaxed">
             VIEWMARKET IS A WORKFLOW SOFTWARE TOOL. UNDER NO CIRCUMSTANCES SHALL VIEWMARKET, ITS FOUNDERS, OR CONTRIBUTORS BE LIABLE TO REFUND, REIMBURSE, OR COMPENSATE FOR FINANCIAL LOSSES ARISING FROM MARKET OPERATIONS.
           </p>
-          <p className="text-sm text-rose-900/90 leading-relaxed">
+          <p className="text-sm text-rose-400/90 leading-relaxed">
             This exclusion applies unconditionally to: algorithmic logic errors authored by the user, slippage during market opens, broker API gateway rejections, session token expirations, internet connection drops, or exchange-mandated halts. All capital risk rests solely with the trader.
           </p>
         </div>
@@ -57,28 +57,28 @@ export default function RefundPolicyPage() {
 
       {/* SECTION 3 */}
       <section className="scroll-mt-24 space-y-3" id="sec-3">
-        <div className="text-[#6d28d9] font-bold text-xs tracking-wider uppercase font-mono">
+        <div className="text-zinc-400 font-bold text-xs tracking-wider uppercase font-mono">
           03. Subscription Cancellation
         </div>
-        <h2 className="font-mackinac text-2xl sm:text-3xl text-[#281950] tracking-tight leading-snug font-normal">
+        <h2 className="font-mackinac text-2xl sm:text-3xl text-white tracking-tight leading-snug font-normal">
           3. SaaS Subscription Cancellation &amp; Renewals
         </h2>
-        <p className="text-base sm:text-lg text-[#281950]/80 leading-relaxed font-normal">
+        <p className="text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
           You may cancel your monthly or annual ViewMarket SaaS subscription at any time via your account billing settings. Upon cancellation, you will retain full access to software features and strategy builders until the end of your current prepaid billing cycle. No further automatic charges will occur.
         </p>
       </section>
 
       {/* SECTION 4 */}
       <section className="scroll-mt-24 space-y-3" id="sec-4">
-        <div className="text-[#6d28d9] font-bold text-xs tracking-wider uppercase font-mono">
+        <div className="text-zinc-400 font-bold text-xs tracking-wider uppercase font-mono">
           04. Technical Inquiries
         </div>
-        <h2 className="font-mackinac text-2xl sm:text-3xl text-[#281950] tracking-tight leading-snug font-normal">
+        <h2 className="font-mackinac text-2xl sm:text-3xl text-white tracking-tight leading-snug font-normal">
           4. Technical Billing Inquiries &amp; Erroneous Charges
         </h2>
-        <p className="text-base sm:text-lg text-[#281950]/80 leading-relaxed font-normal">
+        <p className="text-base sm:text-lg text-zinc-300 leading-relaxed font-normal">
           If you experience a technical billing anomaly (such as a duplicate subscription charge caused by payment gateway timeouts), please submit a ticket to{" "}
-          <a className="text-[#6d28d9] underline hover:opacity-80 font-medium" href="mailto:billing@viewmarket.in">
+          <a className="text-white underline hover:text-zinc-200 font-semibold" href="mailto:billing@viewmarket.in">
             billing@viewmarket.in
           </a>{" "}
           within fourteen (14) days of transaction date. Validated double-charges will be promptly refunded via the original payment channel.

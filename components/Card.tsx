@@ -29,18 +29,18 @@ export default function Card({
       }`}
     >
       <div className="flex-1 max-w-xl space-y-5 text-left">
-        <h2 className="font-mackinac text-2xl sm:text-3xl lg:text-4xl text-[#281950] tracking-tight leading-snug font-normal">
+        <h2 className="font-mackinac text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-snug font-normal">
           {title}
         </h2>
-        <p className="text-base sm:text-lg text-[#281950]/80 leading-relaxed font-normal">
+        <p className="text-base sm:text-lg text-zinc-400 leading-relaxed font-normal">
           {desc}
         </p>
 
         {btn && (
           <div className="pt-2">
-            <a href={href} className="btn-purple inline-flex items-center text-sm sm:text-base">
+            <a href={href} className="btn-white inline-flex items-center text-sm sm:text-base font-semibold text-black">
               <span>{btn}</span>
-              <ChevronRight className="size-4 text-white/80" />
+              <ChevronRight className="size-4 text-black" />
             </a>
           </div>
         )}

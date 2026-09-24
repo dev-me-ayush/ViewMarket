@@ -26,18 +26,18 @@ export default function LegalRightSidebar({ tocItems }: LegalRightSidebarProps) 
   return (
     <aside aria-label="On this page" className="w-full lg:sticky lg:top-24">
       {/* Table of Contents Dock */}
-      <div className="bg-white rounded-2xl p-4 border border-black/[0.08] shadow-sm">
-        <div className="text-xs font-semibold text-[#281950]/75 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-          <List aria-hidden="true" className="size-3.5 text-[#281950]/70" />
+      <div className="bg-[#121215] rounded-2xl p-4 border border-zinc-800 shadow-md">
+        <div className="text-xs font-semibold text-zinc-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+          <List aria-hidden="true" className="size-3.5 text-zinc-500" />
           <span>On This Page</span>
         </div>
         <nav aria-label="On this page">
-          <ul className="space-y-1.5 text-xs text-[#281950]/80 border-l border-black/10 pl-3">
+          <ul className="space-y-1.5 text-xs text-zinc-400 border-l border-zinc-800 pl-3">
             {items.map((item) => (
               <li key={item.id}>
                 <a
                   href={`#${item.id}`}
-                  className="block rounded-sm py-0.5 text-[#281950]/80 hover:text-[#6d28d9] hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6d28d9]/40 focus-visible:ring-offset-2"
+                  className="block rounded-sm py-0.5 text-zinc-400 hover:text-white hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
                 >
                   {item.label}
                 </a>
@@ -46,11 +46,11 @@ export default function LegalRightSidebar({ tocItems }: LegalRightSidebarProps) 
           </ul>
         </nav>
 
-        <div className="mt-4 pt-3 border-t border-black/[0.06] text-xs text-[#281950]/75">
+        <div className="mt-4 pt-3 border-t border-zinc-800 text-xs text-zinc-400">
           <span>Inquiries: </span>
           <a
             href="mailto:legal@viewmarket.in"
-            className="rounded-sm text-[#6d28d9] hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6d28d9]/40 focus-visible:ring-offset-2"
+            className="rounded-sm text-zinc-200 hover:text-white hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 focus-visible:ring-offset-2"
           >
             legal@viewmarket.in
           </a>

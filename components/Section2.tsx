@@ -49,7 +49,7 @@ export default function Section2() {
   ];
 
   return (
-    <section className="py-20 md:py-32 bg2 px-4 md:px-6">
+    <section className="py-20 md:py-32 bg-transparent px-4 md:px-6">
       <Card
         reverse={card3.reverse}
         title={card3.title}
@@ -62,14 +62,21 @@ export default function Section2() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 max-w-[1136px] mx-auto my-20 md:my-28">
         {edgeFeatures.map((feat) => (
           <div key={feat.title} className="flex flex-col gap-5 text-left">
-            <div className={`icon ${feat.iconClass}`}>
-              <Image src={feat.icon} alt="" className="size-6" />
+            <div className={`icon ${feat.iconClass}`} aria-hidden="true">
+              <Image
+                src={feat.icon}
+                alt=""
+                width={24}
+                height={24}
+                unoptimized
+                className="size-6 brightness-0 invert"
+              />
             </div>
             <div className="space-y-2">
-              <h3 className="font-mackinac text-xl font-medium tracking-tight text-[#281950]">
+              <h3 className="font-mackinac text-xl font-medium tracking-tight text-white">
                 {feat.title}
               </h3>
-              <p className="text-base text-[#281950]/75 leading-relaxed">
+              <p className="text-base text-zinc-400 leading-relaxed">
                 {feat.desc}
               </p>
             </div>

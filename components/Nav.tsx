@@ -14,14 +14,10 @@ export default function Nav({ inverted = false }: { inverted?: boolean }) {
     { label: "Compute Optimization", href: "#compute" },
   ];
 
-  const linkClass = inverted
-    ? "px-3 py-1.5 text-white/85 hover:text-white rounded-full transition-colors"
-    : "nav-link";
+  const linkClass = "px-3 py-1.5 text-zinc-300 hover:text-white rounded-full transition-colors";
 
   return (
-    <ul className={`hidden xl:flex gap-1 px-4 py-2 justify-center items-center text-sm font-medium rounded-full relative z-30 ${
-      inverted ? "bg-white/10 border border-white/20 backdrop-blur-md shadow-sm" : "nav-glass-bg"
-    }`}>
+    <ul className="hidden xl:flex gap-1 px-4 py-2 justify-center items-center text-sm font-medium rounded-full relative z-30 bg-zinc-900/80 border border-zinc-800 backdrop-blur-md shadow-sm">
       <li
         className="relative"
         onMouseEnter={() => setIsDropdownOpen(true)}
@@ -32,8 +28,8 @@ export default function Nav({ inverted = false }: { inverted?: boolean }) {
           aria-expanded={isDropdownOpen}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-full transition-colors ${
             isDropdownOpen
-              ? inverted ? "text-white" : "text-[#7c3aed]"
-              : inverted ? "text-white/85 hover:text-white" : "text-[#281950] hover:text-[#7c3aed]"
+              ? "text-white bg-zinc-800"
+              : "text-zinc-300 hover:text-white"
           }`}
         >
           <span>Modules</span>
@@ -42,12 +38,12 @@ export default function Nav({ inverted = false }: { inverted?: boolean }) {
 
         {isDropdownOpen && (
           <div className="absolute left-0 top-full pt-2 w-60 z-50">
-            <div className="bg-white rounded-2xl p-2 shadow-xl border border-black/[0.06] backdrop-blur-md flex flex-col gap-0.5">
+            <div className="bg-[#121215] rounded-2xl p-2 shadow-2xl border border-zinc-800 backdrop-blur-md flex flex-col gap-0.5">
               {moduleItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
-                  className="px-3 py-2 text-sm text-[#281950] rounded-xl hover:bg-[#7c3aed]/10 hover:text-[#7c3aed] transition-colors"
+                  className="px-3 py-2 text-sm text-zinc-300 rounded-xl hover:bg-zinc-800 hover:text-white transition-colors"
                 >
                   {item.label}
                 </a>

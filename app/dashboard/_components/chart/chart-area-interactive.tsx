@@ -120,24 +120,24 @@ export function ChartAreaInteractive() {
                 <stop
                   offset="5%"
                   stopColor="var(--color-desktop)"
-                  stopOpacity={1.0}
+                  stopOpacity={0.35}
                 />
                 <stop
                   offset="95%"
                   stopColor="var(--color-desktop)"
-                  stopOpacity={0.1}
+                  stopOpacity={0.02}
                 />
               </linearGradient>
               <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
                 <stop
                   offset="5%"
                   stopColor="var(--color-mobile)"
-                  stopOpacity={0.8}
+                  stopOpacity={0.2}
                 />
                 <stop
                   offset="95%"
                   stopColor="var(--color-mobile)"
-                  stopOpacity={0.1}
+                  stopOpacity={0.01}
                 />
               </linearGradient>
             </defs>

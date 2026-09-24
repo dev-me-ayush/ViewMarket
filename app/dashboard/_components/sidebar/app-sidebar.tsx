@@ -36,7 +36,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 height={24}
                 className="size-6 object-contain rounded-md"
               />
-              <span className="text-base font-semibold tracking-tight text-[#281950]">
+              <span className="text-base font-semibold tracking-tight text-white">
                 ViewMarket
               </span>
             </SidebarMenuButton>

@@ -7,7 +7,7 @@ export default function LegalLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col bg-[#f4f5fa] text-[#281950]">
+    <div className="min-h-screen flex flex-col bg-[#09090b] text-zinc-100">
       {/* Seamless header directly on canvas, matching landing page */}
       <div className="w-full bg-header-pattern">
         <Header />

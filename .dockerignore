@@ -1,0 +1,12 @@
+node_modules
+.next
+.git
+.gitignore
+.env*
+!*.env.example
+README.md
+vitest.config.ts
+test
+docs
+.agents
+*.md

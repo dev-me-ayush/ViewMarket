@@ -23,12 +23,14 @@
   - `/legal/cookies`: First-party dashboard sidebar preference cookie, current browser-storage disclosures, and zero advertising or behavioral-tracking cookies.
   - `/legal/refund`: Pure cloud compute runtime billing, complete exclusion of market trading losses, SaaS cancellation terms.
 
-## 3. Authentication Surface (`/sign-in`)
+## 3. Authentication Surface (`/sign-in`) & Engine
 - Custom split-screen authentication architecture tailored to ViewMarket's sovereign branding.
 - **Pure Sign-In Layout**: Streamlined dedicated sign-in interface without sign-up toggles at `/sign-in`.
 - **Left Panel (50% on desktop)**: Full-height architectural celestial observatory artwork asset with glowing "VM" continuous loop (`public/assets/auth-illustration.png`), responsive (hidden on mobile, visible on `lg:` 50% split).
 - **Right Panel (50% on desktop, 100% on mobile)**: Brand header linking to `/`, centered OAuth social buttons (GitHub and Google) wired to redirect directly to `/dashboard/overview`, and statutory Terms and Privacy links.
-- **Navigation Redirection**: Global desktop navigation bar and mobile drawer "Sign In" buttons navigate directly to `/sign-in`. Legacy `/signin` and `/login` routes automatically redirect to `/sign-in`.
+- **Engine (Better Auth + Firestore Native)**: Persistent 30-day sessions with 1-day rolling renewal, backing collections (`users`, `sessions`, `accounts`, `verifications`) provisioned on Google Cloud Firestore in Mumbai (`asia-south1`).
+- **Edge Route Protection (`middleware.ts`)**: Automatic bouncing of authenticated users visiting `/sign-in` or `/login` to `/dashboard/overview`, unauthenticated interception on `/dashboard/*` redirecting to `/sign-in`, and sanitization against open redirect attacks.
+- **Adaptive Navigation (`components/NavAuth.tsx`)**: Header and mobile drawer dynamically morph between `"Sign In"` / `"Launch Studio"` and `"Dashboard"` / User Avatar dropdown with 0px Cumulative Layout Shift.
 
 ## 4. Dashboard Overview Surface (`/dashboard/overview`)
 - **Layout & Routing**: Dedicated dashboard workspace at `/dashboard/overview` (`/dashboard` and `/overview` automatically redirect to `/dashboard/overview`).
@@ -46,3 +48,23 @@
     2. **Today's P&L**: Realized intraday return (`+₹18,420`, `+1.48% vs Open`)
     3. **Overall P&L**: Realized fiscal return (`+₹1,94,250`, `+18.42% FY26`)
     4. **Day Trades**: Execution count (`14 Orders`, `100% Human Confirmed`)
+
+## 5. Cloud Hosting, Autoscaling & CI/CD Pipeline
+- **Platform**: Google Cloud Run (Serverless Managed Containers).
+- **Target Project**: `viewmarket-platform-2026`.
+- **Region**: `asia-south1` (Mumbai, India) — colocated with production Firestore database to minimize query latency and eliminate cross-region network egress overhead.
+- **Autoscaling Configuration**:
+  - Horizontal container autoscaling.
+  - `--min-instances=1`: 1 instance constantly active/warm during low-traffic periods, eliminating cold starts.
+  - `--max-instances=10`: Dynamically scales up horizontally under load and concurrent request bursts.
+  - `--concurrency=80`: Maximum concurrent requests per container instance.
+- **Production Secrets Management**:
+  - Managed via **Google Cloud Secret Manager** replicated in `asia-south1`.
+  - Secrets injected directly into Cloud Run container environment at runtime (`BETTER_AUTH_SECRET`, `BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL`, OAuth credentials, `GCP_PROJECT_ID`, GCP credentials).
+  - Production custom domain: `https://viewmarket.in`.
+- **CI/CD Pipeline (`.github/workflows/deploy.yml`)**:
+  - Automated continuous deployment triggered on pushes to `master`.
+  - **Quality Gates**: Runs full TypeScript typechecking (`tsc --noEmit`) and Vitest test suite (`pnpm run test`).
+  - **Docker Build & Push**: Multi-stage standalone Next.js 16 container built and pushed to Google Artifact Registry (`asia-south1-docker.pkg.dev/viewmarket-platform-2026/viewmarket-repo/web:${{ github.sha }}`).
+  - **Cloud Run Deployment**: Deploys updated revision to Cloud Run with zero downtime rolling replacement.
+
