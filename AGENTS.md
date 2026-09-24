@@ -7,3 +7,125 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+# Frontend Engineering Directives (Impeccable Design Standard)
+
+## Mandatory Automatic Activation
+For ANY frontend, UI/UX, styling, layout, component creation, or web page modification task:
+1. **Activate the Impeccable Skill**:
+   - Consult `.agents/skills/impeccable/SKILL.md` automatically before writing or modifying any UI code.
+   - Run the context helper: `.\.agents\skills\impeccable\scripts\impeccable.cmd context` (or inspect `PRODUCT.md` and `DESIGN.md`).
+2. **Strict Anti-Slop Discipline**:
+   - Zero AI cliches: no gratuitous purple/neon gradients, no "AI beige" cards, no decorative grid overlays, no side-tab card borders, no nested card apocalypse, no low-contrast text, no unanchored typography.
+   - Maintain distinct visual hierarchy, purposeful white space, and intentional typography scales.
+3. **Token Normativity & Living Specs**:
+   - Capture product truth in `PRODUCT.md` (`/impeccable init`).
+   - Define and adhere strictly to project design tokens in `DESIGN.md` (colors, typography, radii, spacing). Never invent ad-hoc inline colors or arbitrary font sizes.
+4. **Appropriate Command Playbook**:
+   - Building new surfaces: Follow `/impeccable shape` and `reference/new-work.md`.
+   - Refining existing UI: Run `/impeccable polish`, `/impeccable typeset`, `/impeccable layout`, or `/impeccable distill`.
+   - Evaluating: Run `/impeccable audit` or `/impeccable critique`.
+5. **Mechanical Verification**:
+   - Before finishing any UI task, run detector verification:
+     ```bash
+     .\.agents\skills\impeccable\scripts\impeccable.cmd detect
+     ```
+     or `npx impeccable detect`. Resolve all findings before handing back work.
+
+# Autonomous Skill Execution Directives
+
+> [!IMPORTANT]
+> **Zero Permission Protocol**: When building, designing, planning, reviewing, deploying, or modifying code, automatically activate and execute the relevant installed skill directly without asking the user for confirmation. If a task falls under a skill domain, consultation and execution of that skill is mandatory.
+> 
+> **Frontend & UI Building Directive**: For building the frontend and the UI, you must **use Impeccable skills** (`.agents/skills/impeccable/SKILL.md`) by default. Never build or touch UI code without activating Impeccable principles, anti-slop rules, and running mechanical detection.
+
+---
+
+# Installed Skills Reference & Activation Triggers
+
+### 1. Senior Architecture, Planning & Engineering Lifecycle
+- **`.agents/skills/scope/SKILL.md`** (`scope`):
+  - *When to use*: Plan a product or new feature slice, define boundaries, break down milestones, or maintain `docs/scope/`. Always run before starting large or multi-step feature work.
+- **`.agents/skills/architect/SKILL.md`** (`architect`):
+  - *When to use*: Make load-bearing technical decisions, select frameworks/libraries, design services/APIs, or write technical specifications in `docs/specs/`.
+- **`.agents/skills/develop/SKILL.md`** (`develop`):
+  - *When to use*: Implement full features, backend services, or UI components from approved architectural specs.
+- **`.agents/skills/check/SKILL.md`** (`check`):
+  - *When to use*: Verify implemented code against acceptance criteria (`/check verify`) or conduct senior code reviews (`/check review`) before finalizing changes.
+
+### 2. Next.js & Modern React Engineering
+- **`.agents/skills/vercel-react-best-practices/SKILL.md`** (`vercel-react-best-practices`):
+  - *When to use*: Writing, refactoring, or reviewing any Next.js (App Router) pages, Server/Client Components, Server Actions, data fetching, or bundle optimization.
+- **`.agents/skills/vercel-composition-patterns/SKILL.md`** (`vercel-composition-patterns`):
+  - *When to use*: Designing component APIs, avoiding boolean prop proliferation, creating compound components, or using React 19 patterns.
+- **`.agents/skills/vercel-optimize/SKILL.md`** (`vercel-optimize`):
+  - *When to use*: Optimizing Next.js performance, minimizing function invocation overhead, improving Core Web Vitals (LCP, INP, CLS), and route cache tuning.
+- **`.agents/skills/vercel-react-view-transitions/SKILL.md`** (`vercel-react-view-transitions`):
+  - *When to use*: Implementing animated route transitions, shared layout morphs, or state transitions in Next.js using the View Transitions API.
+
+### 3. Google Cloud Platform & DevOps
+- **`.agents/skills/gcloud/SKILL.md`** (`gcloud`):
+  - *When to use*: Executing, generating, or validating any `gcloud` CLI commands, GCP resource management, IAM permissions, Cloud Run, GCS, or cloud infrastructure operations.
+
+### 4. GitHub CLI & Source Control
+- **`.agents/skills/github-cli/SKILL.md`** (`github-cli`):
+  - *When to use*: Running `gh` CLI commands, managing PRs, reviewing pull requests, inspecting issues, configuring GitHub Actions, releases, or repo automation.
+
+### 5. AI Agents: Voice, Telephony & Real-Time Chat Systems
+- **`.agents/skills/building-livekit-agents/SKILL.md`** (`building-livekit-agents`):
+  - *When to use*: Building conversational AI agents, WebRTC streaming pipelines, voice bots, phone telecalling/SIP trunking, speech-to-text, text-to-speech, and chat-based systems.
+- **`.agents/skills/debugging-livekit-agents/SKILL.md`** (`debugging-livekit-agents`):
+  - *When to use*: Testing voice/chat agents locally, inspecting tool call reasoning, debugging turn latencies, or resolving agent conversation bugs.
+- **`.agents/skills/operating-livekit-agents/SKILL.md`** (`operating-livekit-agents`):
+  - *When to use*: Deploying voice/chat agents to production, managing worker processes, VAD prewarming, handling graceful shutdowns, and production observability.
+
+### 6. Google Stitch Design & Screen Generation Suite
+- **`.agents/skills/stitch-generate-design/SKILL.md`** (`stitch-generate-design`):
+  - *When to use*: Generating new UI screens from text prompts/images, editing existing screens, or generating layout variants via Stitch MCP.
+- **`.agents/skills/stitch-manage-design-system/SKILL.md`** (`stitch-manage-design-system`):
+  - *When to use*: Creating, updating, or applying design systems and themes (`DESIGN.md`) across Stitch screens.
+- **`.agents/skills/stitch-code-to-design/SKILL.md`** (`stitch-code-to-design`):
+  - *When to use*: Converting existing frontend code (React, Vue, etc.) into Stitch designs.
+- **`.agents/skills/stitch-extract-design-md/SKILL.md`** (`stitch-extract-design-md`):
+  - *When to use*: Extracting a complete `DESIGN.md` design system from existing source code.
+- **`.agents/skills/stitch-extract-static-html/SKILL.md`** (`stitch-extract-static-html`):
+  - *When to use*: Extracting self-contained static HTML snapshots with inlined assets from running apps.
+- **`.agents/skills/stitch-upload-to-stitch/SKILL.md`** (`stitch-upload-to-stitch`):
+  - *When to use*: Uploading local assets, mockups, and HTML files into Stitch projects.
+- **`.agents/skills/stitch-react-components/SKILL.md`** (`stitch-react-components`):
+  - *When to use*: Converting Stitch screens into clean, modular, AST-validated React components.
+- **`.agents/skills/stitch-react-native/SKILL.md`** (`stitch-react-native`):
+  - *When to use*: Converting Stitch designs into React Native components with StyleSheet.
+- **`.agents/skills/stitch-loop/SKILL.md`** (`stitch-loop`):
+  - *When to use*: Autonomous loop generation for complete multi-page websites via Stitch.
+- **`.agents/skills/taste-design/SKILL.md`** (`taste-design`):
+  - *When to use*: Generating premium, anti-generic design systems with strict typography and color palettes.
+- **`.agents/skills/enhance-prompt/SKILL.md`** (`enhance-prompt`):
+  - *When to use*: Optimizing raw UI ideas into structured, high-fidelity prompts for Stitch generation.
+- **`.agents/skills/design-md/SKILL.md`** (`design-md`):
+  - *When to use*: Synthesizing semantic `DESIGN.md` files from existing Stitch projects.
+- **`.agents/skills/site-md/SKILL.md`** (`site-md`):
+  - *When to use*: Synthesizing `SITE.md` project constitutions for multi-page builds.
+- **`.agents/skills/remotion/SKILL.md`** (`remotion`):
+  - *When to use*: Generating programmatic walkthrough videos from Stitch screens using Remotion.
+- **`.agents/skills/shadcn-ui/SKILL.md`** (`shadcn-ui`):
+  - *When to use*: Installing, customizing, and composing shadcn/ui components.
+- **`.agents/skills/react-vite-dashboard/SKILL.md`** (`react-vite-dashboard`):
+  - *When to use*: Converting Stitch screens into production React + Vite dashboards with TanStack Query.
+
+### 7. Core Frontend, UI & Data Operations
+- **`.agents/skills/impeccable/SKILL.md`** (`impeccable`):
+  - *When to use*: **MANDATORY**: For building the frontend and the UI, always use Impeccable skills. Use when creating, modifying, polishing, styling, refining, critiquing, or auditing any UI components, web pages, layouts, micro-interactions, forms, dashboards, or design system tokens.
+- **`.agents/skills/frontend-design/SKILL.md`** (`frontend-design`):
+  - *When to use*: Designing and implementing distinctive, high-fidelity web components, pages, or entire UI flows.
+- **`.agents/skills/firestore-data/SKILL.md`** (`firestore-data`):
+  - *When to use*: Querying, managing, or mutating NoSQL Firestore document hierarchies and collections.
+
+---
+
+# Testing & Verification Constraints
+
+- **No Chrome DevTools or Browser Testing Without Explicit User Command**: Never use Chrome DevTools, browser automation, or browser testing tools unless the user explicitly requests browser verification.
+- **Selective Build Testing (`npm run build`)**: Do not run `npm run build` by default. Only run `npm run build` when making changes where verification is necessary to confirm success, or when the user explicitly instructs to run the build.
+
+
