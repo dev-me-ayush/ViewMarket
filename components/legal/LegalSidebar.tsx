@@ -30,7 +30,7 @@ export default function LegalSidebar() {
         <div className="px-3 py-2 text-xs font-semibold text-[#281950]/70 uppercase tracking-wider">
           Legal Documents
         </div>
-        <nav className="mt-2 space-y-1">
+        <nav aria-label="Legal documents" className="mt-2 space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
             const isActive = pathname === item.href;
@@ -38,15 +38,17 @@ export default function LegalSidebar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium transition-all ${
+                aria-current={isActive ? "page" : undefined}
+                className={`flex items-center gap-2.5 px-3 py-2 rounded-xl text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6d28d9]/40 focus-visible:ring-offset-2 ${
                   isActive
                     ? "bg-[#ede4ff] text-[#5300b7] font-semibold border-l-2 border-[#6d28d9]"
                     : "text-[#281950]/80 hover:bg-[#f3eaff] hover:text-[#281950]"
                 }`}
               >
                 <Icon
+                  aria-hidden="true"
                   className={`size-4 shrink-0 ${
-                    isActive ? "text-[#5300b7]" : "text-[#281950]/60"
+                    isActive ? "text-[#5300b7]" : "text-[#281950]/70"
                   }`}
                 />
                 <span className="truncate">{item.label}</span>
@@ -55,11 +57,11 @@ export default function LegalSidebar() {
           })}
         </nav>
 
-        <div className="px-3 pt-3 mt-3 border-t border-black/[0.06] text-xs text-[#281950]/60">
+        <div className="px-3 pt-3 mt-3 border-t border-black/[0.06] text-xs text-[#281950]/75">
           <span>Inquiries: </span>
           <a
             href="mailto:legal@viewmarket.in"
-            className="text-[#6d28d9] hover:underline font-medium"
+            className="rounded-sm text-[#6d28d9] hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6d28d9]/40 focus-visible:ring-offset-2"
           >
             legal@viewmarket.in
           </a>

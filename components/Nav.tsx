@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-export default function Nav() {
+export default function Nav({ inverted = false }: { inverted?: boolean }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const moduleItems = [
@@ -14,8 +14,14 @@ export default function Nav() {
     { label: "Compute Optimization", href: "#compute" },
   ];
 
+  const linkClass = inverted
+    ? "px-3 py-1.5 text-white/85 hover:text-white rounded-full transition-colors"
+    : "nav-link";
+
   return (
-    <ul className="hidden xl:flex gap-1 px-4 nav-glass-bg py-2 justify-center items-center text-sm font-medium rounded-full relative z-30">
+    <ul className={`hidden xl:flex gap-1 px-4 py-2 justify-center items-center text-sm font-medium rounded-full relative z-30 ${
+      inverted ? "bg-white/10 border border-white/20 backdrop-blur-md shadow-sm" : "nav-glass-bg"
+    }`}>
       <li
         className="relative"
         onMouseEnter={() => setIsDropdownOpen(true)}
@@ -25,7 +31,9 @@ export default function Nav() {
           type="button"
           aria-expanded={isDropdownOpen}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-full transition-colors ${
-            isDropdownOpen ? "text-[#7c3aed]" : "text-[#281950] hover:text-[#7c3aed]"
+            isDropdownOpen
+              ? inverted ? "text-white" : "text-[#7c3aed]"
+              : inverted ? "text-white/85 hover:text-white" : "text-[#281950] hover:text-[#7c3aed]"
           }`}
         >
           <span>Modules</span>
@@ -50,27 +58,27 @@ export default function Nav() {
       </li>
 
       <li>
-        <a href="#brokers" className="nav-link">
+        <a href="#brokers" className={linkClass}>
           Brokers
         </a>
       </li>
       <li>
-        <a href="#architecture" className="nav-link">
+        <a href="#architecture" className={linkClass}>
           Architecture
         </a>
       </li>
       <li>
-        <a href="#compliance" className="nav-link">
+        <a href="#compliance" className={linkClass}>
           Compliance
         </a>
       </li>
       <li>
-        <a href="/legal/terms" className="nav-link">
+        <a href="/legal/terms" className={linkClass}>
           Legal
         </a>
       </li>
       <li>
-        <a href="#pricing" className="nav-link">
+        <a href="#pricing" className={linkClass}>
           Pricing
         </a>
       </li>

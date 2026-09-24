@@ -12,7 +12,7 @@ interface LegalPageShellProps {
   subtitle: string;
   effectiveDate: string;
   jurisdiction: string;
-  version?: string;
+  version: string;
   tldr: string;
   tocItems?: TocItem[];
   children: React.ReactNode;
@@ -23,7 +23,7 @@ export default function LegalPageShell({
   subtitle,
   effectiveDate,
   jurisdiction,
-  version = "Version 3.2",
+  version,
   tldr,
   tocItems,
   children,

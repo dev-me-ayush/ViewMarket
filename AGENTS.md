@@ -32,12 +32,54 @@ For ANY frontend, UI/UX, styling, layout, component creation, or web page modifi
      ```
      or `npx impeccable detect`. Resolve all findings before handing back work.
 
+# Strict Modular Architecture & Code Sizing Directives (MANDATORY)
+
+> [!CRITICAL]
+> **Strict Line Count & File Size Enforcement**: All agents working on this codebase MUST comply with the following file size caps. Monolithic files are strictly forbidden. Decomposing components into co-located modules is mandatory.
+
+### 1. Mandatory File Line Limits & Thresholds
+
+| File Category | Ideal Range | Strict Hard Cap | Contents & Responsibilities |
+| :--- | :--- | :--- | :--- |
+| **Route Page (`page.tsx`)** | **40 – 90 lines** | **120 lines** | **Orchestrator only**. Data fetching, route metadata, assembling section components. No inline modal bodies, raw datasets, or deep JSX trees. |
+| **Route Layout (`layout.tsx`)** | **30 – 80 lines** | **120 lines** | Shell chrome, headers, footers, shared providers. |
+| **Feature Section Component** | **80 – 160 lines** | **200 lines** | Route-specific section (e.g., `market-grid.tsx`, `terms-sections.tsx`). |
+| **Interactive Leaf (`'use client'`)**| **40 – 120 lines** | **180 lines** | Interactive controls (filters, forms, search inputs, dialog triggers). |
+| **Reusable UI Primitive** | **30 – 80 lines** | **120 lines** | Dumb design tokens/primitives (except upstream shadcn compound files). |
+| **Hooks, Types & Utilities** | **30 – 90 lines** | **150 lines** | Single-responsibility state hooks, Zod schemas, helpers. |
+| **GLOBAL APPLICATION CEILING** | — | **200 lines** | **Absolute limit for any app file** (ceiling: 250 only for huge static schemas). |
+
+### 2. Mandatory Structural Rules
+
+1. **Route Co-Location (`_components/`)**:
+   - Subcomponents scoped to a specific route MUST live in `app/[route]/_components/` (or nested route folders).
+   - Never dump route-specific components into root `/components/`.
+   - Root `/components/` is strictly reserved for global `/components/ui/` primitives and cross-route shared layouts.
+
+2. **Isolate Server & Client Boundaries**:
+   - `page.tsx` must always be a **React Server Component (RSC)** orchestrator. Never add `'use client'` to a `page.tsx`.
+   - Push `'use client'` down strictly to leaf interactive components.
+   - Separate static configuration arrays, navigation trees, and mock datasets into separate `*.ts` files rather than inlining them inside JSX components.
+
+3. **Dynamic Import for Heavy Client Dependencies**:
+   - Heavy client widgets (charts, drag-and-drop, date pickers, rich editors) must be lazy-loaded using `next/dynamic` with skeleton loading states.
+
+4. **Mandatory Mechanical Audit Before Task Completion**:
+   - Before handing back work that touches or creates components/pages, inspect the file line counts:
+     - Ensure no `page.tsx` exceeds **120 lines**.
+     - Ensure no application file exceeds **200 lines**.
+     - Run `npx tsc --noEmit` to ensure type integrity.
+
+---
+
 # Autonomous Skill Execution Directives
 
 > [!IMPORTANT]
 > **Zero Permission Protocol**: When building, designing, planning, reviewing, deploying, or modifying code, automatically activate and execute the relevant installed skill directly without asking the user for confirmation. If a task falls under a skill domain, consultation and execution of that skill is mandatory.
 > 
 > **Frontend & UI Building Directive**: For building the frontend and the UI, you must **use Impeccable skills** (`.agents/skills/impeccable/SKILL.md`) by default. Never build or touch UI code without activating Impeccable principles, anti-slop rules, and running mechanical detection.
+>
+> **Modular Architecture & File Size Directive (MANDATORY)**: You must strictly follow **Next.js Modular Architecture** (`.agents/skills/nextjs-modular-architecture/SKILL.md`). Enforce file size limits (< 200 lines, `page.tsx` < 120 lines), co-located route `_components/`, leaf-only `'use client'`, and lazy dynamic imports.
 
 ---
 
@@ -54,6 +96,8 @@ For ANY frontend, UI/UX, styling, layout, component creation, or web page modifi
   - *When to use*: Verify implemented code against acceptance criteria (`/check verify`) or conduct senior code reviews (`/check review`) before finalizing changes.
 
 ### 2. Next.js & Modern React Engineering
+- **`.agents/skills/nextjs-modular-architecture/SKILL.md`** (`nextjs-modular-architecture`):
+  - *When to use*: **MANDATORY**: Whenever writing, modifying, decomposing, or reviewing any Next.js pages or components. Enforces strict file sizing (< 200 lines, `page.tsx` < 120 lines), co-located route `_components/`, leaf-only `'use client'` boundaries, and lazy dynamic imports.
 - **`.agents/skills/vercel-react-best-practices/SKILL.md`** (`vercel-react-best-practices`):
   - *When to use*: Writing, refactoring, or reviewing any Next.js (App Router) pages, Server/Client Components, Server Actions, data fetching, or bundle optimization.
 - **`.agents/skills/vercel-composition-patterns/SKILL.md`** (`vercel-composition-patterns`):

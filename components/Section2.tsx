@@ -4,15 +4,15 @@ import Card from "./Card";
 import web from "@/assets/web.svg";
 import connection from "@/assets/connection.svg";
 import thunder from "@/assets/thunder.svg";
-import betterTogether from "@/assets/better-together.png";
-import jsLove from "@/assets/js-love.png";
+import disciplinedTrader from "@/assets/disciplined-trader.png";
+import strategyBuilder from "@/assets/strategy-builder.png";
 
 export default function Section2() {
   const card3 = {
     title: "Visual Strategy Builder With Natural Language Logic Translation",
     desc: "Chain multi-timeframe indicators, candlestick patterns, and mathematical pivot points into clean visual flowcharts. Describe trading ideas in natural language, and let our NLP compiler structure verified rule trees for your inspection.",
-    img: jsLove,
-    alt: "Visual strategy builder logic translator illustration",
+    img: strategyBuilder,
+    alt: "Visual algorithmic strategy flowchart with rule trees and manual verification",
     reverse: true,
     btn: "",
   };
@@ -20,8 +20,8 @@ export default function Section2() {
   const card4 = {
     title: "Systematic, Rule-Based Execution For Disciplined Traders",
     desc: "Graduate from emotional discretionary trading to disciplined, rule-based execution. Connect your broker account in minutes and build your first strategy canvas.",
-    img: betterTogether,
-    alt: "ViewMarket trader ecosystem illustration",
+    img: disciplinedTrader,
+    alt: "Systematic rule-based trader studio canvas and workstation illustration",
     reverse: false,
     btn: "Launch Strategy Studio",
     href: "#builder",

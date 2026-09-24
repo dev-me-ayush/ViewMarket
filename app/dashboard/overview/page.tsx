@@ -1,11 +1,34 @@
-import { AppSidebar } from "@/components/app-sidebar"
-import { ChartAreaInteractive } from "@/components/chart-area-interactive"
-import { DataTable } from "@/components/data-table"
+import dynamic from "next/dynamic"
+import { AppSidebar } from "@/app/dashboard/_components/sidebar/app-sidebar"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 import data from "../data.json"
+
+const ChartAreaInteractive = dynamic(
+  () =>
+    import("@/app/dashboard/_components/chart/chart-area-interactive").then(
+      (mod) => mod.ChartAreaInteractive
+    ),
+  {
+    loading: () => (
+      <div className="h-[310px] w-full animate-pulse rounded-xl bg-muted/40" />
+    ),
+  }
+)
+
+const DataTable = dynamic(
+  () =>
+    import("@/app/dashboard/_components/data-table/data-table").then(
+      (mod) => mod.DataTable
+    ),
+  {
+    loading: () => (
+      <div className="h-64 w-full animate-pulse rounded-xl bg-muted/30" />
+    ),
+  }
+)
 
 export default function OverviewPage() {
   return (

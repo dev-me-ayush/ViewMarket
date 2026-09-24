@@ -1,5 +1,3 @@
-"use client";
-
 import { List } from "lucide-react";
 
 interface TocItem {
@@ -26,31 +24,33 @@ export default function LegalRightSidebar({ tocItems }: LegalRightSidebarProps) 
   const items = tocItems && tocItems.length > 0 ? tocItems : defaultItems;
 
   return (
-    <aside className="w-full lg:sticky lg:top-24">
+    <aside aria-label="On this page" className="w-full lg:sticky lg:top-24">
       {/* Table of Contents Dock */}
       <div className="bg-white rounded-2xl p-4 border border-black/[0.08] shadow-sm">
-        <div className="text-xs font-semibold text-[#281950]/70 uppercase tracking-wider mb-3 flex items-center gap-1.5">
-          <List className="size-3.5 text-[#281950]/60" />
+        <div className="text-xs font-semibold text-[#281950]/75 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+          <List aria-hidden="true" className="size-3.5 text-[#281950]/70" />
           <span>On This Page</span>
         </div>
-        <ul className="space-y-1.5 text-xs text-[#281950]/80 border-l border-black/10 pl-3">
-          {items.map((item) => (
-            <li key={item.id}>
-              <a
-                href={`#${item.id}`}
-                className="text-[#281950]/75 hover:text-[#6d28d9] hover:underline transition-colors block py-0.5"
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <nav aria-label="On this page">
+          <ul className="space-y-1.5 text-xs text-[#281950]/80 border-l border-black/10 pl-3">
+            {items.map((item) => (
+              <li key={item.id}>
+                <a
+                  href={`#${item.id}`}
+                  className="block rounded-sm py-0.5 text-[#281950]/80 hover:text-[#6d28d9] hover:underline transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6d28d9]/40 focus-visible:ring-offset-2"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        <div className="mt-4 pt-3 border-t border-black/[0.06] text-[11px] text-[#281950]/50">
+        <div className="mt-4 pt-3 border-t border-black/[0.06] text-xs text-[#281950]/75">
           <span>Inquiries: </span>
           <a
             href="mailto:legal@viewmarket.in"
-            className="text-[#6d28d9] hover:underline font-medium"
+            className="rounded-sm text-[#6d28d9] hover:underline font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6d28d9]/40 focus-visible:ring-offset-2"
           >
             legal@viewmarket.in
           </a>

@@ -3,7 +3,7 @@
 import { Menu, X } from "lucide-react";
 import React, { useEffect, useState } from "react";
 
-export default function HeaderMenu() {
+export default function HeaderMenu({ inverted = false }: { inverted?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const nav = [
@@ -29,16 +29,26 @@ export default function HeaderMenu() {
     };
   }, [isOpen]);
 
+  const iconColor = isOpen
+    ? "text-[#281950]"
+    : inverted
+    ? "text-white"
+    : "text-[#281950]";
+
   return (
     <>
       <button
         aria-label={isOpen ? "Close menu" : "Open menu"}
         className={`xl:hidden z-50 p-2 rounded-full transition-colors ${
-          isOpen ? "bg-white shadow-sm" : "hover:bg-black/5"
+          isOpen
+            ? "bg-white shadow-sm"
+            : inverted
+            ? "hover:bg-white/10"
+            : "hover:bg-black/5"
         }`}
         onClick={() => setIsOpen(!isOpen)}
       >
-        {isOpen ? <X className="size-6 text-[#281950]" /> : <Menu className="size-6 text-[#281950]" />}
+        {isOpen ? <X className={`size-6 ${iconColor}`} /> : <Menu className={`size-6 ${iconColor}`} />}
       </button>
 
       <div

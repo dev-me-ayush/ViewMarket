@@ -23,6 +23,13 @@ export const metadata: Metadata = {
   title: "ViewMarket · Non-Custodial Trading Workflow & Computational Analytics",
   description:
     "SEBI-compliant non-custodial trading software, visual strategy builder, and computational analytics for Indian markets (Zerodha, Upstox, Dhan, Angel One).",
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: "/apple-icon.png",
+  },
 };
 
 import { TooltipProvider } from "@/components/ui/tooltip";

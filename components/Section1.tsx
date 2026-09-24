@@ -3,8 +3,8 @@ import web from "@/assets/web.svg";
 import connection from "@/assets/connection.svg";
 import thunder from "@/assets/thunder.svg";
 import spot from "@/assets/spot.svg";
-import flyglobe from "@/assets/fly-globe.png";
-import coolBird from "@/assets/cool-bird.png";
+import worldGlobe from "@/assets/world-globe.png";
+import complianceShield from "@/assets/compliance-shield.png";
 import Card from "./Card";
 import Enterprise from "./Enterprise";
 
@@ -12,7 +12,7 @@ export default function Section1() {
   const card1 = {
     title: "Direct Client-to-Broker Execution. Zero Central Server Relay.",
     desc: "Your trading credentials and live market data belong entirely to you. ViewMarket connects your browser directly to supported broker WebSocket gateways using your ephemeral session tokens. Zero tick streaming, zero order routing, and zero broker credentials ever pass through or touch our backend servers.",
-    img: flyglobe,
+    img: worldGlobe,
     alt: "ViewMarket direct client-to-broker execution illustration",
     reverse: false,
     btn: "",
@@ -21,8 +21,8 @@ export default function Section1() {
   const card2 = {
     title: "Substance Over Form. 100% Indian Market Regulatory Compliance.",
     desc: "We provide clean, unlicensed SaaS tooling and workflow automation—not unsolicited trading tips, black-box auto-bots, or speculative Telegram advice. All orders enforce mandatory human click-to-trade verification under SEBI retail guidelines.",
-    img: coolBird,
-    alt: "Regulatory compliance and transparency illustration",
+    img: complianceShield,
+    alt: "100% Non-Advisory and Human Click-to-Trade regulatory verification seal",
     reverse: false,
     btn: "View Compliance Details",
     href: "/legal/disclaimer",
@@ -84,7 +84,7 @@ export default function Section1() {
         ))}
       </div>
 
-      <div className="w-full max-w-[1136px] cool-bird-bg p-8 sm:p-12 md:p-14">
+      <div className="w-full max-w-[1136px] compliance-banner-bg p-8 sm:p-12 md:p-14">
         <Card
           reverse={card2.reverse}
           title={card2.title}

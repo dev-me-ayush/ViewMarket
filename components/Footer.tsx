@@ -59,9 +59,9 @@ export default function Footer() {
           <Image
             alt="ViewMarket Logo"
             src={logoInverted}
+            width={220}
             height={36}
-            width={110}
-            className="h-8 w-auto object-contain"
+            className="h-9 md:h-10 w-auto object-contain"
           />
         </a>
 

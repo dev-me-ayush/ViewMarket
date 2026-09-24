@@ -35,3 +35,11 @@
 - Buttons: `rounded-full` or pill caps
 - Cards: `rounded-2xl` / `rounded-3xl`
 - Shadows: Multi-stop soft ambient shadows, inset highlight rings (`box-shadow: inset 0 0 0 1px ...`)
+
+## Brand Mark & Logo
+- **Mark**: "The Hand-Sketched Isometric Cube" (Treatment C)
+  - Container: Hand-inked squircle badge (`#8258E6` lavender violet, `rounded-[13px]`) with organic ink wobble; completely clean with zero stars or watermark artifacts.
+  - Geometry: 3D isometric computational cube with illuminated white top face, hand-drawn pencil cross-hatching across deep violet (`#581C87`) and midnight navy (`#251648`) side facets.
+  - Wordmark: "ViewMarket" set in `Mackinac Pro` display serif, 600 weight, deep midnight navy (`#1F144D`) on light backgrounds; crisp white (`#FFFFFF`) on dark footer surfaces (`#191034`).
+  - Proportions: 6.15:1 aspect ratio (`1058px x 172px`), cropped with pixel-tight margins.
+  - Assets: `assets/logo-landscape.png`, `assets/logo-landscape-inverted.png`, `public/assets/viewmarket-icon.png`, `app/icon.png`.

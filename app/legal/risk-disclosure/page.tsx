@@ -100,8 +100,8 @@ export default function RiskDisclosurePage() {
           5. Total Capital Impairment Warning
         </h2>
         <div className="p-5 bg-rose-50/70 rounded-2xl border border-rose-200/80 shadow-sm">
-          <p className="text-xs uppercase tracking-wider text-rose-950 font-bold leading-relaxed">
-            DO NOT TRADE WITH MONEY YOU CANNOT AFFORD TO LOSE. DERIVATIVES AND INTRADAY MARGIN PRODUCTS (MIS) CARRY SUBSTANTIAL LEVERAGE AND CAN RESULT IN LOSSES EXCEEDING YOUR INITIAL DEPOSIT. VIEWMARKET PROVIDES SOFTWARE TOOLING ONLY AND DOES NOT ASSUME ANY RESPONSIBILITY WHATSOEVER FOR FINANCIAL LOSSES INCURRED WHILE USING THIS PLATFORM.
+          <p className="text-sm sm:text-base text-rose-950 font-semibold leading-relaxed">
+            Do not trade with money you cannot afford to lose. Derivatives and intraday margin products (MIS) carry substantial leverage and can result in losses exceeding your initial deposit. ViewMarket provides software tooling only and does not assume responsibility for financial losses incurred while using this platform.
           </p>
         </div>
       </section>

@@ -5,7 +5,7 @@ interface LegalDocumentHeroProps {
   subtitle: string;
   effectiveDate: string;
   jurisdiction: string;
-  version?: string;
+  version: string;
   tldr: string;
 }
 
@@ -14,21 +14,37 @@ export default function LegalDocumentHero({
   subtitle,
   effectiveDate,
   jurisdiction,
+  version,
   tldr,
 }: LegalDocumentHeroProps) {
   return (
     <section className="w-full mb-10 pb-8 border-b border-black/[0.08]">
       {/* Breadcrumb Navigation */}
-      <nav className="flex items-center gap-2 text-xs sm:text-sm text-[#281950]/60 mb-4 font-medium">
-        <Link href="/" className="hover:text-[#6d28d9] transition-colors">
+      <nav
+        aria-label="Legal document breadcrumb"
+        className="flex items-center gap-2 text-xs sm:text-sm text-[#281950]/75 mb-4 font-medium"
+      >
+        <Link
+          href="/"
+          className="rounded-sm hover:text-[#6d28d9] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6d28d9]/40 focus-visible:ring-offset-2"
+        >
           Home
         </Link>
-        <span className="text-black/30">/</span>
-        <Link href="/legal/terms" className="hover:text-[#6d28d9] transition-colors">
+        <span className="text-black/40" aria-hidden="true">
+          /
+        </span>
+        <Link
+          href="/legal/terms"
+          className="rounded-sm hover:text-[#6d28d9] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6d28d9]/40 focus-visible:ring-offset-2"
+        >
           Legal
         </Link>
-        <span className="text-black/30">/</span>
-        <span className="text-[#6d28d9] font-semibold">{title}</span>
+        <span className="text-black/40" aria-hidden="true">
+          /
+        </span>
+        <span aria-current="page" className="text-[#6d28d9] font-semibold">
+          {title}
+        </span>
       </nav>
 
       {/* Document Titling */}
@@ -42,22 +58,33 @@ export default function LegalDocumentHero({
       </div>
 
       {/* Clean Metadata Line */}
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-6 pt-4 border-t border-black/[0.06] text-xs sm:text-sm text-[#281950]/70">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-6 pt-4 border-t border-black/[0.06] text-xs sm:text-sm text-[#281950]/75">
         <div>
-          <span className="text-[#281950]/50 font-medium">Effective:</span>{" "}
+          <span className="text-[#281950]/70 font-medium">Effective:</span>{" "}
           <span className="font-medium text-[#281950]">{effectiveDate}</span>
         </div>
-        <span className="text-black/20">·</span>
+        <span className="text-black/30" aria-hidden="true">
+          ·
+        </span>
         <div>
-          <span className="text-[#281950]/50 font-medium">Jurisdiction:</span>{" "}
+          <span className="text-[#281950]/70 font-medium">Jurisdiction:</span>{" "}
           <span className="font-medium text-[#281950]">{jurisdiction}</span>
         </div>
-        <span className="text-black/20">·</span>
+        <span className="text-black/30" aria-hidden="true">
+          ·
+        </span>
         <div>
-          <span className="text-[#281950]/50 font-medium">Inquiries:</span>{" "}
+          <span className="text-[#281950]/70 font-medium">Version:</span>{" "}
+          <span className="font-medium text-[#281950]">{version}</span>
+        </div>
+        <span className="text-black/30" aria-hidden="true">
+          ·
+        </span>
+        <div>
+          <span className="text-[#281950]/70 font-medium">Inquiries:</span>{" "}
           <a
             href="mailto:legal@viewmarket.in"
-            className="font-medium text-[#6d28d9] hover:underline"
+            className="rounded-sm font-medium text-[#6d28d9] hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6d28d9]/40 focus-visible:ring-offset-2"
           >
             legal@viewmarket.in
           </a>
