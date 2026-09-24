@@ -6,8 +6,8 @@ RUN npm install -g pnpm@12.3.4
 # Step 1: Install dependencies
 FROM base AS deps
 WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml* ./
+RUN pnpm install --frozen-lockfile --config.ignore-scripts=true
 
 # Step 2: Build the application
 FROM base AS builder
