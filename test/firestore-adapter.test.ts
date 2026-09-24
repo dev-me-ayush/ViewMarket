@@ -192,4 +192,28 @@ describe("Better Auth Firestore Adapter", () => {
     expect(created.refreshToken).toBeUndefined();
     expect(created.providerId).toBe("google");
   });
+
+  it("resolves join: { user: true } when querying accounts", async () => {
+    const { mockDb } = createMockFirestore();
+    const adapter = firestoreAdapter(mockDb)();
+
+    await adapter.create({
+      model: "user",
+      data: { id: "user_42", name: "Ayush", email: "dev.me.ayush@gmail.com" },
+    });
+    await adapter.create({
+      model: "account",
+      data: { id: "acc_42", userId: "user_42", providerId: "google", accountId: "goog_123" },
+    });
+
+    const accounts = await adapter.findMany({
+      model: "account",
+      where: [{ field: "accountId", value: "goog_123" }],
+      join: { user: true },
+    });
+
+    expect(accounts).toHaveLength(1);
+    expect((accounts[0] as any).user).toBeDefined();
+    expect((accounts[0] as any).user.email).toBe("dev.me.ayush@gmail.com");
+  });
 });
