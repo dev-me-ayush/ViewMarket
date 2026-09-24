@@ -167,6 +167,19 @@ For ANY frontend, UI/UX, styling, layout, component creation, or web page modifi
 
 ---
 
+# Next.js 16 Proxy Convention — No Middleware (MANDATORY)
+
+> [!CRITICAL]
+> **This repo uses `proxy.ts` only. `middleware.ts` is forbidden.** The `middleware` file convention was deprecated in Next.js 16 and renamed to `proxy` (https://nextjs.org/docs/messages/middleware-to-proxy).
+
+1. **Single source of truth**: root `proxy.ts` exporting `export function proxy(request: NextRequest)` plus `export const config = { matcher: [...] }`. Tests live in `test/proxy.test.ts` importing `import { proxy } from "@/proxy"`.
+2. **Never create** `middleware.ts`, `src/middleware.ts`, or any `*middleware*` file. Never export `function middleware` or `const middleware`. Never import from `@/middleware`.
+3. **When editing auth guards**: edit `proxy.ts` only. Keep the matcher scoped (`/dashboard/:path*`, `/sign-in`, `/signin`, `/login`). Keep open-redirect sanitization (reject `//` and non-`/` callbackUrls).
+4. **Docs use proxy naming**: `docs/FEATURES.md` and `docs/specs/auth-firestore-betterauth.md` say `proxy.ts` / Proxy. Do not reintroduce `middleware.ts` wording in project docs.
+5. **Ignore upstream skill wording**: files under `.agents/skills/**` and `.gemini/**` still mention "middleware" (Vercel/Next.js upstream docs, cost scanners). Those are third-party references — do not edit them and do not copy the term into app code or project docs.
+
+---
+
 # Testing & Verification Constraints
 
 - **No Chrome DevTools or Browser Testing Without Explicit User Command**: Never use Chrome DevTools, browser automation, or browser testing tools unless the user explicitly requests browser verification.

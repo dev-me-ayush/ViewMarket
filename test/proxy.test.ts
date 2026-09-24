@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { middleware } from "@/middleware";
+import { proxy } from "@/proxy";
 import { NextRequest } from "next/server";
 
 function createMockRequest(url: string, cookies: Record<string, string> = {}) {
@@ -10,10 +10,10 @@ function createMockRequest(url: string, cookies: Record<string, string> = {}) {
   return req;
 }
 
-describe("Edge Authentication Middleware", () => {
+describe("Edge Authentication Proxy", () => {
   it("redirects unauthenticated user accessing /dashboard/overview to /sign-in with callbackUrl", () => {
     const req = createMockRequest("http://localhost:3000/dashboard/overview");
-    const res = middleware(req);
+    const res = proxy(req);
     expect(res.status).toBe(307);
     const location = res.headers.get("location");
     expect(location).toContain("/sign-in");
@@ -22,7 +22,7 @@ describe("Edge Authentication Middleware", () => {
 
   it("redirects unauthenticated user accessing deep nested /dashboard/strategies/builder to /sign-in", () => {
     const req = createMockRequest("http://localhost:3000/dashboard/strategies/builder?tab=active");
-    const res = middleware(req);
+    const res = proxy(req);
     expect(res.status).toBe(307);
     const location = res.headers.get("location");
     expect(location).toContain("callbackUrl=%2Fdashboard%2Fstrategies%2Fbuilder%3Ftab%3Dactive");
@@ -32,7 +32,7 @@ describe("Edge Authentication Middleware", () => {
     const req = createMockRequest("http://localhost:3000/dashboard/overview", {
       "better-auth.session_token": "valid_session_token_123",
     });
-    const res = middleware(req);
+    const res = proxy(req);
     expect(res.status).toBe(200);
   });
 
@@ -40,7 +40,7 @@ describe("Edge Authentication Middleware", () => {
     const req = createMockRequest("http://localhost:3000/dashboard/overview", {
       "__Secure-better-auth.session_token": "valid_secure_token_456",
     });
-    const res = middleware(req);
+    const res = proxy(req);
     expect(res.status).toBe(200);
   });
 
@@ -48,7 +48,7 @@ describe("Edge Authentication Middleware", () => {
     const req = createMockRequest("http://localhost:3000/sign-in", {
       "better-auth.session_token": "valid_session_token_123",
     });
-    const res = middleware(req);
+    const res = proxy(req);
     expect(res.status).toBe(307);
     expect(res.headers.get("location")).toBe("http://localhost:3000/dashboard/overview");
   });
@@ -57,7 +57,7 @@ describe("Edge Authentication Middleware", () => {
     const req = createMockRequest("http://localhost:3000/login", {
       "better-auth.session_token": "valid_session_token_123",
     });
-    const res = middleware(req);
+    const res = proxy(req);
     expect(res.status).toBe(307);
     expect(res.headers.get("location")).toBe("http://localhost:3000/dashboard/overview");
   });
@@ -66,7 +66,7 @@ describe("Edge Authentication Middleware", () => {
     const req = createMockRequest("http://localhost:3000/signin", {
       "better-auth.session_token": "valid_session_token_123",
     });
-    const res = middleware(req);
+    const res = proxy(req);
     expect(res.status).toBe(307);
     expect(res.headers.get("location")).toBe("http://localhost:3000/dashboard/overview");
   });
@@ -76,7 +76,7 @@ describe("Edge Authentication Middleware", () => {
       "http://localhost:3000/sign-in?callbackUrl=https://attacker-phishing.com/steal",
       { "better-auth.session_token": "valid_session_token_123" }
     );
-    const res = middleware(req);
+    const res = proxy(req);
     expect(res.status).toBe(307);
     // Malicious external url rejected, defaults safely to /dashboard/overview
     expect(res.headers.get("location")).toBe("http://localhost:3000/dashboard/overview");
@@ -86,7 +86,7 @@ describe("Edge Authentication Middleware", () => {
     const req = createMockRequest("http://localhost:3000/sign-in?callbackUrl=//malicious.com", {
       "better-auth.session_token": "valid_session_token_123",
     });
-    const res = middleware(req);
+    const res = proxy(req);
     expect(res.status).toBe(307);
     expect(res.headers.get("location")).toBe("http://localhost:3000/dashboard/overview");
   });
@@ -95,7 +95,7 @@ describe("Edge Authentication Middleware", () => {
     const req = createMockRequest("http://localhost:3000/sign-in?callbackUrl=/dashboard/analytics", {
       "better-auth.session_token": "valid_session_token_123",
     });
-    const res = middleware(req);
+    const res = proxy(req);
     expect(res.status).toBe(307);
     expect(res.headers.get("location")).toBe("http://localhost:3000/dashboard/analytics");
   });

@@ -29,7 +29,7 @@
 - **Left Panel (50% on desktop)**: Full-height architectural celestial observatory artwork asset with glowing "VM" continuous loop (`public/assets/auth-illustration.png`), responsive (hidden on mobile, visible on `lg:` 50% split).
 - **Right Panel (50% on desktop, 100% on mobile)**: Brand header linking to `/`, centered OAuth social buttons (GitHub and Google) wired to redirect directly to `/dashboard/overview`, and statutory Terms and Privacy links.
 - **Engine (Better Auth + Firestore Native)**: Persistent 30-day sessions with 1-day rolling renewal, backing collections (`users`, `sessions`, `accounts`, `verifications`) provisioned on Google Cloud Firestore in Mumbai (`asia-south1`).
-- **Edge Route Protection (`middleware.ts`)**: Automatic bouncing of authenticated users visiting `/sign-in` or `/login` to `/dashboard/overview`, unauthenticated interception on `/dashboard/*` redirecting to `/sign-in`, and sanitization against open redirect attacks.
+- **Edge Route Protection (`proxy.ts`)**: Automatic bouncing of authenticated users visiting `/sign-in` or `/login` to `/dashboard/overview`, unauthenticated interception on `/dashboard/*` redirecting to `/sign-in`, and sanitization against open redirect attacks.
 - **Adaptive Navigation (`components/NavAuth.tsx`)**: Header and mobile drawer dynamically morph between `"Sign In"` / `"Launch Studio"` and `"Dashboard"` / User Avatar dropdown with 0px Cumulative Layout Shift.
 
 ## 4. Dashboard Overview Surface (`/dashboard/overview`)

@@ -33,6 +33,7 @@ export const auth = betterAuth({
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://viewmarket.in",
+    "https://www.viewmarket.in",
     "https://*.run.app",
     process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
   ],

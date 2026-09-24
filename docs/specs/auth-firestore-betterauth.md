@@ -6,10 +6,10 @@ ViewMarket requires a production-grade, secure authentication system supporting 
 
 ```mermaid
 flowchart TD
-    Browser["User Browser / Client"] -->|HTTPS| EdgeMW["Next.js Middleware (middleware.ts)"]
-    EdgeMW -->|Public Route| Landing["Landing Page (/) / Legal (/legal/*)"]
-    EdgeMW -->|Unauthenticated & /dashboard/*| BounceSignIn["Redirect -> /sign-in?callbackUrl=..."]
-    EdgeMW -->|Authenticated & /sign-in| BounceDash["Redirect -> /dashboard/overview"]
+    Browser["User Browser / Client"] -->|HTTPS| EdgeProxy["Next.js Proxy (proxy.ts)"]
+    EdgeProxy -->|Public Route| Landing["Landing Page (/) / Legal (/legal/*)"]
+    EdgeProxy -->|Unauthenticated & /dashboard/*| BounceSignIn["Redirect -> /sign-in?callbackUrl=..."]
+    EdgeProxy -->|Authenticated & /sign-in| BounceDash["Redirect -> /dashboard/overview"]
     
     Browser -->|OAuth Login Click| AuthAPI["Better Auth API Route (/api/auth/[...all])"]
     AuthAPI -->|OAuth Handshake (PKCE)| Providers["Google / GitHub OAuth Server"]
@@ -132,9 +132,9 @@ To ensure that an already authenticated user does not repeatedly sign in:
   - Clicking a provider dispatches `signIn.social({ provider, callbackURL: "/dashboard/overview" })`.
   - On OAuth completion $\to$ immediately redirects to `/dashboard/overview`.
 - **Already Authenticated visiting `/sign-in`**:
-  - Middleware intercepts and immediately bounces to `/dashboard/overview`.
+  - Proxy intercepts and immediately bounces to `/dashboard/overview`.
 - **Unauthenticated accessing `/dashboard/*`**:
-  - Middleware intercepts and bounces to `/sign-in?callbackUrl=<target_path>`.
+  - Proxy intercepts and bounces to `/sign-in?callbackUrl=<target_path>`.
 
 ---
 
@@ -146,9 +146,9 @@ To ensure that an already authenticated user does not repeatedly sign in:
    - [lib/firestore.ts](file:///c:/Users/medev/Desktop/viewmarket/lib/firestore.ts): Firestore singleton instance initialized with service account from `.env.local`.
    - [lib/auth.ts](file:///c:/Users/medev/Desktop/viewmarket/lib/auth.ts): Better Auth server configuration with Google, GitHub, and Firestore adapter.
    - [lib/auth-client.ts](file:///c:/Users/medev/Desktop/viewmarket/lib/auth-client.ts): Client hooks (`useSession`, `signIn`, `signOut`).
-3. **Route Handlers & Middleware**:
-   - `app/api/auth/[...all]/route.ts`: Better Auth catch-all HTTP handler.
-   - `middleware.ts`: Next.js Edge route guard.
+3. **Route Handlers & Proxy**:
+    - `app/api/auth/[...all]/route.ts`: Better Auth catch-all HTTP handler.
+    - `proxy.ts`: Next.js Edge route guard (exports `proxy`, never `middleware`).
 4. **Component Updates**:
    - [components/Header.tsx](file:///c:/Users/medev/Desktop/viewmarket/components/Header.tsx): Incorporate `NavAuth` component.
    - [components/NavAuth.tsx](file:///c:/Users/medev/Desktop/viewmarket/components/NavAuth.tsx): Client-side leaf switching between Sign In and Dashboard buttons.
