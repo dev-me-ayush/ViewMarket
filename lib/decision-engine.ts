@@ -48,7 +48,8 @@ function getEngineConfig() {
 
 export async function evaluateTradeCondition(
   context: string,
-  condition: string
+  condition: string,
+  timeoutMs?: number
 ): Promise<DecisionResult> {
   const { url, apiKey } = getEngineConfig();
   const startTime = performance.now();
@@ -62,6 +63,7 @@ export async function evaluateTradeCondition(
     body: JSON.stringify({ context, condition }),
     cache: "no-store",
     keepalive: true,
+    ...(timeoutMs ? { signal: AbortSignal.timeout(timeoutMs) } : {}),
   });
 
   if (!response.ok) {

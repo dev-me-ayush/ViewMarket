@@ -218,4 +218,28 @@ For ANY frontend, UI/UX, styling, layout, component creation, or web page modifi
    - **NEVER** expose the AWS IP or API key to browser client bundles (no `NEXT_PUBLIC_` prefix).
    - All client UI actions call Next.js Server Actions or Route Handlers (`app/api/...`), which proxy requests securely with the `X-Internal-Secret` header.
 
+---
+
+# Knowledge Base, System Prompt & AI Guardrail Sizing Directives (MANDATORY)
+
+> [!CRITICAL]
+> **Strict Limits for AI Prompts & Knowledge Base Modules**: To maintain ultra-low latency, prevent token overflow, avoid prompt dilution, and keep embedding search accurate, all knowledge base files and prompts MUST adhere to the following strict boundaries:
+
+### 1. File Sizing & Chunk Thresholds
+| Module / File Type | Ideal Range | Strict Hard Cap | Contents & Responsibilities |
+| :--- | :--- | :--- | :--- |
+| **System Prompt File** (`system-prompt.ts`) | **40 – 70 lines** | **90 lines** | Persona, role identity, and high-level behavioral directives. Zero bloated inlined manuals. |
+| **Domain Guardrails** (`guardrails.ts`) | **50 – 80 lines** | **100 lines** | Exact out-of-domain refusal pivots, allowed/forbidden topics, and validation helpers. |
+| **Regulatory & Identity Specs** (`about-us.ts`) | **60 – 100 lines** | **120 lines** | Non-broker identity, SEBI compliance, non-custodial model, and product capabilities. |
+| **Firestore Knowledge Chunk Size** | **300 – 600 chars** | **800 chars (max 200 tokens)** | Single-concept chunks for vector indexing (`text-embedding-004`). Prevents semantic dilution. |
+
+### 2. Behavioral Directives for AI Agent
+1. **Strict Financial & Trading Boundary**: The agent ONLY handles stock markets, financial data, technical analysis, quantitative modeling, trading strategies, and ViewMarket capabilities. Any out-of-domain query (e.g. general programming, poems, politics, health) must be refused politely and firmly with the standard pivot.
+2. **Regulatory Positioning ("About Us")**:
+   - ViewMarket is **NOT a registered broker** (not SEBI-registered RIA/RA).
+   - ViewMarket is a **non-custodial software technology platform** (BYOA: Bring Your Own Account).
+   - Orders require mandatory human confirmation (click-to-trade). Zero autonomous money management or profit guarantees.
+   - 9 out of 10 individual traders in derivatives (F&O) incur net losses.
+
+
 
