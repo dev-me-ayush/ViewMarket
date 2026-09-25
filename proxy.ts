@@ -23,8 +23,8 @@ export function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL(target, request.url));
   }
 
-  // 2. Unauthenticated user accessing protected dashboard routes -> bounce to /sign-in
-  if (!isAuthenticated && pathname.startsWith("/dashboard")) {
+  // 2. Unauthenticated user accessing protected dashboard or chart routes -> bounce to /sign-in
+  if (!isAuthenticated && (pathname.startsWith("/dashboard") || pathname.startsWith("/charts"))) {
     const signInUrl = new URL("/sign-in", request.url);
     const callbackPath = pathname + (request.nextUrl.search || "");
 
@@ -44,6 +44,8 @@ export function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     "/dashboard/:path*",
+    "/charts/:path*",
+    "/charts",
     "/sign-in",
     "/signin",
     "/login",

@@ -16,14 +16,15 @@ export function NavMain({
     title: string
     url: string
     icon?: React.ReactNode
+    target?: string
   }[]
 }) {
   const pathname = usePathname()
 
   return (
     <SidebarGroup>
-      <SidebarGroupContent className="flex flex-col gap-2">
-        <SidebarMenu>
+      <SidebarGroupContent className="flex flex-col gap-1.5">
+        <SidebarMenu className="gap-1.5">
           {items.map((item) => {
             const isActive =
               pathname === item.url ||
@@ -34,10 +35,17 @@ export function NavMain({
                 <SidebarMenuButton
                   tooltip={item.title}
                   isActive={Boolean(isActive)}
-                  render={<a href={item.url} />}
+                  className="h-10 px-3 text-sm font-medium transition-colors gap-2.5 rounded-lg group-data-[collapsible=icon]:h-8!"
+                  render={
+                    <a
+                      href={item.url}
+                      target={item.target}
+                      rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
+                    />
+                  }
                 >
                   {item.icon}
-                  <span>{item.title}</span>
+                  <span className="text-[13.5px] tracking-tight">{item.title}</span>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             )

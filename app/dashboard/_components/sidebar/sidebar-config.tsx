@@ -6,6 +6,13 @@ import {
   PlugIcon,
 } from "lucide-react"
 
+export interface NavMainItem {
+  title: string
+  url: string
+  icon?: React.ReactNode
+  target?: string
+}
+
 export const sidebarData = {
   user: {
     name: "Trader",
@@ -25,8 +32,9 @@ export const sidebarData = {
     },
     {
       title: "Charts",
-      url: "/dashboard/charts",
+      url: "/charts",
       icon: <ChartColumnIcon />,
+      target: "_blank",
     },
     {
       title: "Connections",

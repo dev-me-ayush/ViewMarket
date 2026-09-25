@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Bot, Copy, Check, FileText } from "lucide-react"
 import { Streamdown } from "streamdown"
 import { code } from "@streamdown/code"
-import { STARTER_PROMPTS } from "./chat-constants"
+import { AgentEmptyState } from "./agent-empty-state"
 import type { ChatMessage } from "./types"
 
 interface ChatMessagesProps {
@@ -28,31 +28,7 @@ export function ChatMessages({ messages, isThinking, onSelectPrompt }: ChatMessa
   }
 
   if (messages.length === 0) {
-    return (
-      <div className="flex flex-1 flex-col items-center justify-center p-6 text-center">
-        <div className="mb-4 flex size-12 items-center justify-center rounded-2xl border border-zinc-800 bg-zinc-900/90 text-zinc-200 shadow-lg">
-          <Bot className="size-6 text-zinc-300" />
-        </div>
-        <h3 className="text-base font-medium text-zinc-100">ViewMarket Quant Synthesizer</h3>
-        <p className="mt-1 max-w-md text-xs text-zinc-400">
-          Synthesize algorithmic trading strategies, formulate risk rules, or parse indicators.
-        </p>
-        {onSelectPrompt && (
-          <div className="mt-8 grid w-full grid-cols-1 gap-2.5 sm:grid-cols-2">
-            {STARTER_PROMPTS.map((prompt) => (
-              <button
-                key={prompt}
-                type="button"
-                onClick={() => onSelectPrompt(prompt)}
-                className="group flex flex-col rounded-xl border border-zinc-800/80 bg-zinc-900/40 p-3 text-left transition-all hover:border-zinc-700 hover:bg-zinc-800/60"
-              >
-                <span className="text-xs text-zinc-300 group-hover:text-zinc-100">{prompt}</span>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-    )
+    return <AgentEmptyState onSelectPrompt={onSelectPrompt} />
   }
 
   return (
