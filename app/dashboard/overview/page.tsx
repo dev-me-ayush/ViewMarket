@@ -1,8 +1,6 @@
 import dynamic from "next/dynamic"
-import { AppSidebar } from "@/app/dashboard/_components/sidebar/app-sidebar"
 import { SectionCards } from "@/components/section-cards"
 import { SiteHeader } from "@/components/site-header"
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
 
 import data from "../data.json"
 
@@ -32,29 +30,19 @@ const DataTable = dynamic(
 
 export default function OverviewPage() {
   return (
-    <SidebarProvider
-      style={
-        {
-          "--sidebar-width": "calc(var(--spacing) * 72)",
-          "--header-height": "calc(var(--spacing) * 12)",
-        } as React.CSSProperties
-      }
-    >
-      <AppSidebar variant="inset" />
-      <SidebarInset>
-        <SiteHeader />
-        <div className="flex flex-1 flex-col">
-          <div className="@container/main flex flex-1 flex-col gap-2">
-            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-              <SectionCards />
-              <div className="px-4 lg:px-6">
-                <ChartAreaInteractive />
-              </div>
-              <DataTable data={data} />
+    <>
+      <SiteHeader />
+      <div className="flex flex-1 flex-col">
+        <div className="@container/main flex flex-1 flex-col gap-2">
+          <div className="flex flex-col gap-3 py-3 md:gap-4 md:py-4">
+            <SectionCards />
+            <div className="px-3 lg:px-4">
+              <ChartAreaInteractive />
             </div>
+            <DataTable data={data} />
           </div>
         </div>
-      </SidebarInset>
-    </SidebarProvider>
+      </div>
+    </>
   )
 }

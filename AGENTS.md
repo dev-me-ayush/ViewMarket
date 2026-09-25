@@ -185,4 +185,37 @@ For ANY frontend, UI/UX, styling, layout, component creation, or web page modifi
 - **No Chrome DevTools or Browser Testing Without Explicit User Command**: Never use Chrome DevTools, browser automation, or browser testing tools unless the user explicitly requests browser verification.
 - **Selective Build Testing (`npm run build`)**: Do not run `npm run build` by default. Only run `npm run build` when making changes where verification is necessary to confirm success, or when the user explicitly instructs to run the build.
 
+---
+
+# System 1 AI Decision Engine Directive (ModernBERT / Jev-AI Pattern)
+
+> [!IMPORTANT]
+> **Deterministic Sub-30ms Decision Layer**: This codebase uses a dedicated **System 1 Decision Engine** deployed on an 8-vCPU AWS EC2 instance (`13.200.254.164`, AMD EPYC Milan) running ModernBERT (`dleemiller/ModernCE-base-nli`) with fused ONNX Runtime.
+
+1. **When to Use**:
+   - Evaluating trade conditions, strategy entry/exit rules, or candle formations.
+   - Enforcing platform risk parameters, leverage limits, and SEBI compliance rules.
+   - Tool gating and confirmation checks in Voice & Chat AI Agents (VA): model returns instant calibrated confidence scores (0.0–1.0) and boolean verdicts without token generation latency or hallucination.
+   - Batch evaluation of multi-asset ticker signals (16ms per condition).
+
+2. **Server-Side Import & Usage**:
+   - Import exclusively from `@/lib/decision-engine`:
+     ```typescript
+     import { evaluateTradeCondition, evaluateTradeBatch } from "@/lib/decision-engine";
+
+     const result = await evaluateTradeCondition(
+       "BTC broke 68,000 resistance with RSI at 64.",
+       "Market structure is strongly bullish."
+     );
+     // result.match -> boolean
+     // result.verdict -> "entailment" | "contradiction" | "neutral"
+     // result.confidence -> 0.732 (73.2%)
+     // result.latency_ms -> 36.0ms
+     ```
+
+3. **Security & Zero-Client-Exposure**:
+   - `DECISION_ENGINE_URL` and `DECISION_ENGINE_API_KEY` are **strictly server-side** in `.env.local` and Cloud Run / Secret Manager.
+   - **NEVER** expose the AWS IP or API key to browser client bundles (no `NEXT_PUBLIC_` prefix).
+   - All client UI actions call Next.js Server Actions or Route Handlers (`app/api/...`), which proxy requests securely with the `X-Internal-Secret` header.
+
 

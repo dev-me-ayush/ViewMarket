@@ -29,7 +29,7 @@ export function DataTableToolbar({
   table: TableInstance
 }) {
   return (
-    <div className="flex items-center justify-between px-4 lg:px-6">
+    <div className="flex items-center justify-between px-3 lg:px-4">
       <Label htmlFor="view-selector" className="sr-only">
         View
       </Label>

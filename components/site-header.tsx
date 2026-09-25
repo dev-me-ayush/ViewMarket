@@ -1,16 +1,26 @@
+import type { ReactNode } from "react"
 import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 
-export function SiteHeader() {
+export function SiteHeader({
+  title = "Overview",
+  children,
+}: {
+  title?: string
+  children?: ReactNode
+}) {
   return (
-    <header className="flex h-(--header-height) shrink-0 items-center gap-2 border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
-      <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-6">
-        <SidebarTrigger className="-ml-1" />
-        <Separator
-          orientation="vertical"
-          className="mx-2 h-4 data-vertical:self-auto"
-        />
-        <h1 className="text-base font-medium">Overview</h1>
+    <header className="flex h-(--header-height) shrink-0 items-center border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
+      <div className="flex w-full items-center justify-between px-3 lg:px-4">
+        <div className="flex items-center gap-1">
+          <SidebarTrigger className="-ml-1 size-7" />
+          <Separator
+            orientation="vertical"
+            className="mx-1.5 h-4 data-vertical:self-auto"
+          />
+          <h1 className="text-sm font-medium">{title}</h1>
+        </div>
+        {children && <div className="flex items-center gap-2">{children}</div>}
       </div>
     </header>
   )

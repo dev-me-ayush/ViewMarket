@@ -44,6 +44,7 @@ function ChartContainer({
   children,
   config,
   initialDimension = INITIAL_DIMENSION,
+  debounceMs,
   ...props
 }: React.ComponentProps<"div"> & {
   config: ChartConfig
@@ -54,6 +55,10 @@ function ChartContainer({
     width: number
     height: number
   }
+  /** Coalesces ResizeObserver callbacks into one render per `debounceMs`.
+   *  Pass ~150ms on dashboard charts so sidebar collapse/expand settles
+   *  before the chart rebuilds its SVG. Defaults to live resizing. */
+  debounceMs?: number
 }) {
   const uniqueId = React.useId()
   const chartId = `chart-${id ?? uniqueId.replace(/:/g, "")}`
@@ -72,6 +77,7 @@ function ChartContainer({
         <ChartStyle id={chartId} config={config} />
         <RechartsPrimitive.ResponsiveContainer
           initialDimension={initialDimension}
+          debounce={debounceMs}
         >
           {children}
         </RechartsPrimitive.ResponsiveContainer>

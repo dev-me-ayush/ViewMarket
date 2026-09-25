@@ -4,9 +4,7 @@ import * as React from "react"
 import Image from "next/image"
 import icon from "@/assets/viewmarket-icon.png"
 
-import { NavDocuments } from "@/components/nav-documents"
 import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
 import {
   Sidebar,
@@ -21,11 +19,12 @@ import { sidebarData } from "./sidebar-config"
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
+              tooltip="Overview"
               className="data-[slot=sidebar-menu-button]:p-1.5!"
               render={<a href="/dashboard/overview" />}
             >
@@ -45,8 +44,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={sidebarData.navMain} />
-        <NavDocuments items={sidebarData.documents} />
-        <NavSecondary items={sidebarData.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={sidebarData.user} />

@@ -68,3 +68,11 @@
   - **Docker Build & Push**: Multi-stage standalone Next.js 16 container built and pushed to Google Artifact Registry (`asia-south1-docker.pkg.dev/viewmarket-platform-2026/viewmarket-repo/web:${{ github.sha }}`).
   - **Cloud Run Deployment**: Deploys updated revision to Cloud Run with zero downtime rolling replacement.
 
+## 6. System 1 AI Decision Engine (ModernBERT / AWS Mumbai)
+- **Architecture**: Sub-30ms deterministic Cross-Encoder Natural Language Inference (NLI) engine powered by ModernBERT (`dleemiller/ModernCE-base-nli`).
+- **Compute Cluster**: Dedicated AWS EC2 `c6a.2xlarge` (8 vCPUs AMD EPYC Milan 3.6 GHz, 16 GiB RAM) in Mumbai (`ap-south-1`) with graph-fused Microsoft ONNX Runtime.
+- **Latency Performance**: 23ms – 37ms server-side single inference, 16ms/item parallel batch processing.
+- **Security & Access Control**: Cryptographic constant-time authentication (`X-Internal-Secret`). Zero browser client exposure; accessed exclusively via Next.js server-side client wrapper ([`lib/decision-engine.ts`](../lib/decision-engine.ts)).
+- **Integration Scope**: Voice & Chat AI agent (VA) tool gating, automated strategy rule triggering, real-time risk limit enforcement, multi-asset chart ticker scanning, and grounded RAG verification.
+- **Full Specification**: See [`docs/specs/decision-engine.md`](specs/decision-engine.md) and [`docs/modernbert-infra.md`](modernbert-infra.md).
+

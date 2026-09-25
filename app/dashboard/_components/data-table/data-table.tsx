@@ -109,7 +109,7 @@ export function DataTable({
       <DataTableToolbar table={table} />
       <TabsContent
         value="outline"
-        className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
+        className="relative flex flex-col gap-4 overflow-auto px-3 lg:px-4"
       >
         <div className="overflow-hidden rounded-lg border">
           <DndContext
@@ -161,16 +161,16 @@ export function DataTable({
       </TabsContent>
       <TabsContent
         value="past-performance"
-        className="flex flex-col px-4 lg:px-6"
+        className="flex flex-col px-3 lg:px-4"
       >
         <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
       </TabsContent>
-      <TabsContent value="key-personnel" className="flex flex-col px-4 lg:px-6">
+      <TabsContent value="key-personnel" className="flex flex-col px-3 lg:px-4">
         <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
       </TabsContent>
       <TabsContent
         value="focus-documents"
-        className="flex flex-col px-4 lg:px-6"
+        className="flex flex-col px-3 lg:px-4"
       >
         <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
       </TabsContent>
