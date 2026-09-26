@@ -4,6 +4,7 @@ import {
   ChartColumnIcon,
   LayoutDashboardIcon,
   PlugIcon,
+  ScrollTextIcon,
 } from "lucide-react"
 
 export interface NavMainItem {
@@ -35,6 +36,11 @@ export const sidebarData = {
       url: "/charts",
       icon: <ChartColumnIcon />,
       target: "_blank",
+    },
+    {
+      title: "Logs",
+      url: "/dashboard/logs",
+      icon: <ScrollTextIcon />,
     },
     {
       title: "Connections",

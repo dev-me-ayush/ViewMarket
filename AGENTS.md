@@ -238,6 +238,7 @@ For ANY frontend, UI/UX, styling, layout, component creation, or web page modifi
 2. **Regulatory Positioning ("About Us")**:
    - ViewMarket is **NOT a registered broker** (not SEBI-registered RIA/RA).
    - ViewMarket is a **non-custodial software technology platform** (BYOA: Bring Your Own Account).
+   - Supported Brokers (8): Zerodha (Kite Connect v3), Angel One (SmartAPI v2), Upstox (API v2), Dhan (DhanHQ), Fyers (API v3), Kotak Neo (Trade API), ICICI Direct (Breeze API), and Shoonya by Finvasia (Noren API).
    - Orders require mandatory human confirmation (click-to-trade). Zero autonomous money management or profit guarantees.
    - 9 out of 10 individual traders in derivatives (F&O) incur net losses.
 

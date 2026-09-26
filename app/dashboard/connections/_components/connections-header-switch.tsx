@@ -10,10 +10,10 @@ import {
   MessageSquareIcon,
 } from "lucide-react"
 
-export const VALID_TABS = ["brokers", "data-providers", "messaging", "overview"] as const
+export const VALID_TABS = ["overview", "brokers", "data-providers", "messaging"] as const
 export type TabKey = (typeof VALID_TABS)[number]
 
-export const DEFAULT_TAB: TabKey = "brokers"
+export const DEFAULT_TAB: TabKey = "overview"
 
 export function ConnectionsHeaderSwitch() {
   const router = useRouter()
@@ -50,6 +50,10 @@ export function ConnectionsHeaderSwitch() {
       className="w-auto"
     >
       <TabsList className="h-7 bg-muted/60 p-0.5 text-xs">
+        <TabsTrigger value="overview" className="gap-1.5 px-2.5 py-0.5 text-xs">
+          <LayoutGridIcon className="size-3.5" />
+          <span className="hidden sm:inline">Overview</span>
+        </TabsTrigger>
         <TabsTrigger value="brokers" className="gap-1.5 px-2.5 py-0.5 text-xs">
           <Building2Icon className="size-3.5" />
           <span className="hidden sm:inline">Brokers</span>
@@ -61,10 +65,6 @@ export function ConnectionsHeaderSwitch() {
         <TabsTrigger value="messaging" className="gap-1.5 px-2.5 py-0.5 text-xs">
           <MessageSquareIcon className="size-3.5" />
           <span className="hidden sm:inline">Messaging</span>
-        </TabsTrigger>
-        <TabsTrigger value="overview" className="gap-1.5 px-2.5 py-0.5 text-xs">
-          <LayoutGridIcon className="size-3.5" />
-          <span className="hidden sm:inline">Overview</span>
         </TabsTrigger>
       </TabsList>
     </Tabs>

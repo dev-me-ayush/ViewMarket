@@ -10,7 +10,7 @@ export interface DomainGateResult {
 
 // Obvious trading & market terms that immediately pass (<0.1ms fast pass)
 const FAST_PASS_REGEX =
-  /\b(nifty|banknifty|sensex|finnifty|midcpnifty|stock|stocks|share|shares|equity|equities|f&o|futures|options|option|call|put|strike|premium|ce|pe|rsi|ema|sma|dema|tema|vwap|macd|super\s*trend|supertrend|bollinger|stochastic|ichimoku|atr|pivot|fibonacci|candlestick|candle|candles|chart|charts|breakout|breakdown|stop[\s-]?loss|target|drawdown|leverage|margin|zerodha|upstox|dhan|angel|groww|kite|broker|byoa|sebi|portfolio|backtest|quant|algo|viewmarket|trade|trader|trading|invest|investing|market|markets|p&l|mtm)\b/i
+  /\b(nifty|banknifty|sensex|finnifty|midcpnifty|stock|stocks|share|shares|equity|equities|f&o|futures|options|option|call|put|strike|premium|ce|pe|rsi|ema|sma|dema|tema|vwap|macd|super\s*trend|supertrend|bollinger|stochastic|ichimoku|atr|pivot|fibonacci|candlestick|candle|candles|chart|charts|breakout|breakdown|stop[\s-]?loss|target|drawdown|leverage|margin|zerodha|upstox|dhan|angel|groww|kite|fyers|kotak|neo|icici|breeze|shoonya|finvasia|broker|byoa|sebi|portfolio|backtest|quant|algo|viewmarket|trade|trader|trading|invest|investing|market|markets|p&l|mtm)\b/i
 
 const DOMAIN_HYPOTHESIS =
   "The user is asking about trading, stocks, financial markets, technical indicators, or the ViewMarket platform."

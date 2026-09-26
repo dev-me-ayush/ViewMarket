@@ -10,7 +10,7 @@ export function SiteHeader({
   children?: ReactNode
 }) {
   return (
-    <header className="flex h-(--header-height) shrink-0 items-center border-b transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
+    <header className="sticky top-0 z-20 flex h-(--header-height) shrink-0 items-center border-b bg-background/95 backdrop-blur-md transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-(--header-height)">
       <div className="flex w-full items-center justify-between px-3 lg:px-4">
         <div className="flex items-center gap-1">
           <SidebarTrigger className="-ml-1 size-7" />

@@ -20,7 +20,7 @@ export const ABOUT_VIEWMARKET: KnowledgeItem[] = [
     id: "byoa_model",
     topic: "How does trading work? (BYOA Model)",
     content:
-      "ViewMarket operates on a Bring-Your-Own-Account (BYOA) architecture. Users connect their own existing demat/trading accounts via authorized broker APIs (e.g. Zerodha Kite, Upstox, Dhan, Angel One). All trade executions occur directly inside the user's personal brokerage account.",
+      "ViewMarket operates on a Bring-Your-Own-Account (BYOA) architecture. Users connect their own existing demat/trading accounts via authorized broker APIs: Zerodha (Kite Connect v3), Angel One (SmartAPI v2), Upstox (API v2), Dhan (DhanHQ), Fyers (API v3), Kotak Neo (Trade API), ICICI Direct (Breeze API), and Shoonya by Finvasia (Noren API). All trade executions occur directly inside the user's personal brokerage account.",
   },
   {
     id: "mandatory_click_to_trade",

@@ -76,3 +76,14 @@
 - **Integration Scope**: Voice & Chat AI agent (VA) tool gating, automated strategy rule triggering, real-time risk limit enforcement, multi-asset chart ticker scanning, and grounded RAG verification.
 - **Full Specification**: See [`docs/specs/decision-engine.md`](specs/decision-engine.md) and [`docs/modernbert-infra.md`](modernbert-infra.md).
 
+## 7. Broker Execution Gateways & Connections Suite (`/dashboard/connections`)
+- **Supported Brokers (8)**: Zerodha (Kite Connect v3), Angel One (SmartAPI v2), Upstox (API v2/v3), Dhan (DhanHQ v2), Fyers (API v3), Kotak Neo (Trade API v2), ICICI Direct (Breeze API v2), and Shoonya by Finvasia (Noren API).
+- **Non-Custodial BYOA Model**: Client-side AES-256 session credential storage, zero server token databases, click-to-trade mandatory confirmation.
+- **Connections Tab Order**:
+  1. `Overview` (`tab=overview`): Integrated services and session health monitoring.
+  2. `Brokers` (`tab=brokers`): Horizontal bar-shaped expandable broker rows with real-time keyword search and market type filtering (All, NSE/BSE, Crypto).
+  3. `Data Providers` (`tab=data-providers`): External market feeds.
+  4. `Messaging` (`tab=messaging`): Alert destinations (Telegram, Discord, WhatsApp).
+- **Technical Specification**: Comprehensive endpoint matrices, auth lifecycles, WebSocket framing protocols, ping-pong intervals, historical candle APIs, and symbol master sources documented in [`docs/brokers/INDIAN_BROKERS_SPECIFICATION.md`](brokers/INDIAN_BROKERS_SPECIFICATION.md).
+
+

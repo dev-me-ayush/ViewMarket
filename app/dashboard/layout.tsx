@@ -17,7 +17,7 @@ export default function DashboardLayout({
       }
     >
       <AppSidebar variant="sidebar" />
-      <SidebarInset className="min-w-0">{children}</SidebarInset>
+      <SidebarInset className="min-w-0 h-svh max-h-svh overflow-hidden flex flex-col">{children}</SidebarInset>
     </SidebarProvider>
   )
 }

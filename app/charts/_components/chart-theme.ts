@@ -2,6 +2,10 @@ import type {
   ChartOptions,
   DeepPartial,
   CandlestickSeriesOptions,
+  BarSeriesOptions,
+  LineSeriesOptions,
+  AreaSeriesOptions,
+  BaselineSeriesOptions,
 } from "lightweight-charts"
 
 export const darkChartOptions: DeepPartial<ChartOptions> = {
@@ -69,5 +73,35 @@ export const candlestickSeriesOptions: DeepPartial<CandlestickSeriesOptions> = {
   borderDownColor: "#ef5350",
   wickUpColor: "#26a69a",
   wickDownColor: "#ef5350",
+}
+
+export const barSeriesOptions: DeepPartial<BarSeriesOptions> = {
+  upColor: "#26a69a",
+  downColor: "#ef5350",
+}
+
+export const lineSeriesOptions: DeepPartial<LineSeriesOptions> = {
+  color: "#60a5fa",
+  lineWidth: 2,
+  priceLineVisible: true,
+}
+
+export const areaSeriesOptions: DeepPartial<AreaSeriesOptions> = {
+  lineColor: "#60a5fa",
+  topColor: "rgba(96, 165, 250, 0.35)",
+  bottomColor: "rgba(96, 165, 250, 0.02)",
+  lineWidth: 2,
+}
+
+export function baselineSeriesOptions(baseValue: number): DeepPartial<BaselineSeriesOptions> {
+  return {
+    baseValue: { type: "price", price: baseValue },
+    topLineColor: "#26a69a",
+    bottomLineColor: "#ef5350",
+    topFillColor1: "rgba(38, 166, 154, 0.28)",
+    topFillColor2: "rgba(38, 166, 154, 0.02)",
+    bottomFillColor1: "rgba(239, 83, 80, 0.02)",
+    bottomFillColor2: "rgba(239, 83, 80, 0.28)",
+  }
 }
 

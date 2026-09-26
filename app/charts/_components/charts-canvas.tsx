@@ -1,6 +1,8 @@
 "use client"
 
 import dynamic from "next/dynamic"
+import type { IChartApi } from "lightweight-charts"
+import type { ChartSeriesType } from "./chart-series-types"
 
 // Dynamically import LightweightChart with SSR disabled to prevent server-side canvas errors
 const DynamicLightweightChart = dynamic(
@@ -15,10 +17,10 @@ const DynamicLightweightChart = dynamic(
   }
 )
 
-export function ChartsCanvas() {
+export function ChartsCanvas({ onChartReady, seriesType }: { onChartReady?: (chart: IChartApi | null) => void; seriesType?: ChartSeriesType }) {
   return (
     <main className="relative flex flex-1 flex-col overflow-hidden bg-background">
-      <DynamicLightweightChart />
+      <DynamicLightweightChart onChartReady={onChartReady} seriesType={seriesType} />
     </main>
   )
 }

@@ -33,6 +33,7 @@ export const metadata: Metadata = {
 };
 
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function RootLayout({
   children,
@@ -43,6 +44,7 @@ export default function RootLayout({
     <html lang="en" className={cn(mackinac.variable, bricolage.variable, "font-sans", geist.variable, "dark")}>
       <body className="antialiased min-h-screen text-zinc-100 bg-[#09090b] selection:bg-zinc-800 selection:text-white">
         <TooltipProvider>{children}</TooltipProvider>
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );
